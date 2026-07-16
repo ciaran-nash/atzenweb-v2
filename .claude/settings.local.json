@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(run)",
+      "Bash(curl -s http://localhost:3000/)",
+      "Bash(awk '{print $2}')",
+      "Bash(xargs -r kill -9)",
+      "Bash(vercel dev *)",
+      "Bash(npm run *)",
+      "Bash(npm install *)",
+      "Bash(npx vite *)",
+      "Bash(curl -s http://localhost:3002/)",
+      "Bash(open *)",
+      "Bash(ffmpeg -i /Users/ciarannash/Documents/atzenweb-main/temp/Elemente/Atzenmaus.mov -c:v libx264 -crf 28 -preset slow -c:a aac -b:a 128k -movflags +faststart /Users/ciarannash/Documents/atzenweb-main/public/elemente/Atzenmaus.mp4)",
+      "Bash(wait b5yvqy7fd *)",
+      "Bash(lsof -ti:3000)",
+      "Bash(xargs kill -9)",
+      "Bash(lsof -ti:3001)",
+      "Bash(lsof -ti:3002)"
+    ]
+  }
+}
