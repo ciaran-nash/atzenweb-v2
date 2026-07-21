@@ -96,6 +96,14 @@ export default function App() {
   useEffect(() => {
     const hash = window.location.hash;
 
+    if (hash === '#admin') {
+      const stored = localStorage.getItem('ag_admin_key');
+      if (stored) {
+        setAdminApiKey(stored);
+        setIsAdmin(true);
+      }
+    }
+
     if (hash.startsWith('#checkout/success')) {
       const params = new URLSearchParams(hash.split('?')[1] || '');
       const orderId = params.get('order');
@@ -107,6 +115,13 @@ export default function App() {
 
     const onHashChange = () => {
       const h = window.location.hash;
+      if (h === '#admin') {
+        const stored = localStorage.getItem('ag_admin_key');
+        if (stored) {
+          setAdminApiKey(stored);
+          setIsAdmin(true);
+        }
+      }
       if (h.startsWith('#checkout/success')) {
         const params = new URLSearchParams(h.split('?')[1] || '');
         const orderId = params.get('order');
@@ -118,6 +133,18 @@ export default function App() {
     };
     window.addEventListener('hashchange', onHashChange);
     return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
+
+  // Alt+A keyboard shortcut to toggle admin mode
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.altKey && e.key === 'a') {
+        e.preventDefault();
+        setIsAdmin(prev => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   useEffect(() => {
