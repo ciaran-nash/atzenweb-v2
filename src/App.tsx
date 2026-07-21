@@ -138,7 +138,7 @@ export default function App() {
   // Alt+A keyboard shortcut to toggle admin mode
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.altKey && e.key === 'a') {
+      if (e.altKey && (e.code === 'KeyA' || e.key === 'a' || e.key === 'å' || e.key === 'Å')) {
         e.preventDefault();
         setIsAdmin(prev => !prev);
       }
