@@ -1,6 +1,6 @@
 import { kv } from '@vercel/kv';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { generateId, setCors, respondError } from './_lib/kv';
+import { generateId, setCors, respondError } from './_lib/kv.js';
 import Stripe from 'stripe';
 
 const SETTINGS_KEY = 'ag:settings';

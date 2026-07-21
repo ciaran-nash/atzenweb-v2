@@ -1,6 +1,6 @@
 import { kv } from '@vercel/kv';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { setCors, respondError } from './_lib/kv';
+import { setCors, respondError } from './_lib/kv.js';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   setCors(res, req.headers.origin as string | undefined);

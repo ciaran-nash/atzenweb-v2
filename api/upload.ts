@@ -1,5 +1,5 @@
 import { put } from '@vercel/blob';
-import { requireAuth, setCors, respondError } from './_lib/kv';
+import { requireAuth, setCors, respondError } from './_lib/kv.js';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import sharp from 'sharp';
 

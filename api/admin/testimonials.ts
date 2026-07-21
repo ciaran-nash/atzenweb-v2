@@ -1,4 +1,4 @@
-import { createHandler, requireAuth, getCollection, getItem, saveItem, deleteItem, generateId } from '../_lib/kv';
+import { createHandler, requireAuth, getCollection, getItem, saveItem, deleteItem, generateId } from '../_lib/kv.js';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 const COLLECTION = 'testimonials';

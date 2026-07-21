@@ -1,6 +1,6 @@
 import { kv } from '@vercel/kv';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { respondError } from './_lib/kv';
+import { respondError } from './_lib/kv.js';
 
 export const config = {
   api: {

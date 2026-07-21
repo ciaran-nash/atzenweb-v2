@@ -1,7 +1,7 @@
-import { createHandler, requireAuth } from '../_lib/kv';
+import { createHandler, requireAuth } from '../_lib/kv.js';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { kv } from '@vercel/kv';
-import { translateDEtoENGB } from '../_lib/translate';
+import { translateDEtoENGB } from '../_lib/translate.js';
 
 const TRANSLATIONS_KEY = 'ag:translations';
 
