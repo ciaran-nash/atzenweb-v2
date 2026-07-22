@@ -17,7 +17,7 @@ async function getStripeKey(): Promise<string | null> {
   } catch {
     // KV not configured (e.g. Admin disabled) — fall back to env var below
   }
-  return settings?.stripeSecretKey || process.env.STRIPE_SECRET_KEY || null;
+  return settings?.stripeSecretKey || process.env.STRIPE_SECRET_KEY_TEST || process.env.STRIPE_SECRET_KEY || null;
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
