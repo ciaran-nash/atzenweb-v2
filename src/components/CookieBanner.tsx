@@ -8,7 +8,7 @@ import ArrowLeft from 'lucide-react/dist/esm/icons/arrow-left';
 import { Language } from '../types';
 import { motion, AnimatePresence } from 'motion/react';
 
-import 'klaro/dist/klaro-no-css';
+import klaro from 'klaro/dist/klaro-no-css';
 import { klaroConfig } from '../config/klaroConfig';
 
 interface CookieBannerProps {
@@ -32,19 +32,18 @@ export default function CookieBanner({ lang, onConsentSaved, onTriggerNotificati
   const isCurrentlyShowing = isOpen !== undefined ? isOpen : show;
 
   const getKlaroManager = () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return (window as any).klaro?.getManager(klaroConfig);
+    return klaro?.getManager(klaroConfig);
   };
 
   useEffect(() => {
     const manager = getKlaroManager();
     if (!manager) return;
 
-    manager.loadState();
-    
+    manager.loadConsents();
+
     // Check if consent has already been given (Klaro state holds the consents)
     const hasConsented = manager.confirmed;
-    
+
     if (!hasConsented) {
       if (isOpen === undefined) {
         // Show banner on initial visit (delayed slightly for elegant entrance)
@@ -54,7 +53,7 @@ export default function CookieBanner({ lang, onConsentSaved, onTriggerNotificati
         return () => clearTimeout(timer);
       }
     } else {
-      const consents = manager.getConsents();
+      const consents = manager.consents;
       onConsentSaved({
         marketing: !!consents['marketing-analytics'],
         functional: !!consents['functional-prefs'],

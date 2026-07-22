@@ -160,7 +160,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const stored = localStorage.getItem('atzold_cookie_consent_v1');
+    const stored = localStorage.getItem('atzold_cookie_consent_v2');
     if (!stored) {
       const timer = setTimeout(() => setShowCookieBanner(true), 800);
       return () => clearTimeout(timer);
