@@ -80,9 +80,9 @@ export default function AGB({ lang, isOpen, onClose }: AGBProps) {
             <div className="text-sm text-ink/80 dark:text-canvas/80 leading-relaxed space-y-3">
               <p>
                 {isEn ? (
-                  'All prices are in Euro (€) and include the statutory value-added tax (VAT). Shipping costs are additional and are indicated separately during the checkout process.'
+                  'All prices are in Euro (€) and include the statutory value-added tax (VAT) as well as shipping within Germany.'
                 ) : (
-                  'Alle Preise verstehen sich in Euro (€) und enthalten die gesetzliche Umsatzsteuer (MwSt.). Versandkosten kommen hinzu und werden im Bestellvorgang gesondert ausgewiesen.'
+                  'Alle Preise verstehen sich in Euro (€) und enthalten die gesetzliche Umsatzsteuer (MwSt.) sowie den Versand innerhalb Deutschlands.'
                 )}
               </p>
               <p>
@@ -103,9 +103,9 @@ export default function AGB({ lang, isOpen, onClose }: AGBProps) {
             <div className="text-sm text-ink/80 dark:text-canvas/80 leading-relaxed space-y-3">
               <p>
                 {isEn ? (
-                  'Delivery is made via DHL GoGreen (climate-neutral) to addresses within Germany only. Shipping costs are a flat rate of €4.90. Orders over €50 are shipped free of charge. Delivery time is approximately 2-4 business days.'
+                  'Delivery is made via DHL GoGreen (climate-neutral) to addresses within Germany only. Shipping costs are already included in the item price — no additional shipping fee is charged. Delivery time is approximately 2-4 business days.'
                 ) : (
-                  'Die Lieferung erfolgt ausschließlich innerhalb Deutschlands per DHL GoGreen (klimaneutral). Die Versandkosten betragen pauschal 4,90 €. Bestellungen über 50 € werden versandkostenfrei geliefert. Die Lieferzeit beträgt ca. 2-4 Werktage.'
+                  'Die Lieferung erfolgt ausschließlich innerhalb Deutschlands per DHL GoGreen (klimaneutral). Die Versandkosten sind bereits im Artikelpreis enthalten — es fallen keine zusätzlichen Versandkosten an. Die Lieferzeit beträgt ca. 2-4 Werktage.'
                 )}
               </p>
             </div>

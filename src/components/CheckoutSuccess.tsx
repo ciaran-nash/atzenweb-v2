@@ -95,11 +95,11 @@ export default function CheckoutSuccess({ lang, orderId, onClose }: CheckoutSucc
               <div className="flex justify-between items-center">
                 <span className="text-ink/70 dark:text-canvas/70 flex items-center gap-1.5">
                   <Truck className="h-4 w-4" />
-                  {lang === 'en' ? 'Shipping' : 'Versand'}
+                  {lang === 'en' ? 'Shipping' : 'Versandkosten'}
                 </span>
                 <span className="font-bold text-ink dark:text-canvas">
                   {order.shipping === 0
-                    ? <span className="text-primary dark:text-primary">{lang === 'en' ? 'Free' : 'Gratis'}</span>
+                    ? <span className="text-primary dark:text-primary">{lang === 'en' ? "On us ✌️" : 'auf unseren Nacken ✌️'}</span>
                     : `€${order.shipping.toFixed(2)}`}
                 </span>
               </div>

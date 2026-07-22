@@ -82,7 +82,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const subtotal = items.reduce((acc: number, ci: any) => {
       return acc + ((ci.item.promoPrice || ci.item.price) * ci.quantity);
     }, 0);
-    const shipping = subtotal > 50 ? 0 : 4.90;
+    const shipping = 0; // Versand ist in allen Produktpreisen inklusive
     const total = subtotal + shipping;
 
     const order = {

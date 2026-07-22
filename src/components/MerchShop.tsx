@@ -125,7 +125,7 @@ export default function MerchShop({ lang, onAddCartFeedback }: MerchShopProps) {
     return acc + (itemPrice * curr.quantity);
   }, 0);
 
-  const shippingCost = cartSubtotal > 50 ? 0 : 4.90;
+  const shippingCost = 0; // Versand ist in allen Produktpreisen inklusive
   const cartTotal = cartSubtotal + shippingCost;
 
   const handleSizeChange = (itemId: string, size: string) => {
@@ -464,10 +464,10 @@ export default function MerchShop({ lang, onAddCartFeedback }: MerchShopProps) {
                     <div className="flex justify-between items-center">
                       <span className="select-none flex items-center gap-2">
                         <Truck className="h-4 w-4" />
-                        Versand:
+                        Versandkosten:
                       </span>
                       <span className="text-body-tabular" style={{ fontFeatureSettings: '"tnum"' }}>
-                        {shippingCost === 0 ? <span className="text-primary bg-primary/10 dark:bg-primary/20 px-2 py-0.5 rounded-full text-xs border border-primary/20 dark:border-primary/30">Gratis (Ab 50€ !)</span> : `€${shippingCost.toFixed(2)}`}
+                        <span className="text-primary bg-primary/10 dark:bg-primary/20 px-2 py-0.5 rounded-full text-xs border border-primary/20 dark:border-primary/30">auf unseren Nacken ✌️</span>
                       </span>
                     </div>
                     <div className="border-t border-ink/10 dark:border-canvas/10 my-3 pt-3 flex justify-between text-lg font-black text-ink dark:text-canvas font-display">
@@ -524,8 +524,8 @@ export default function MerchShop({ lang, onAddCartFeedback }: MerchShopProps) {
                     </p>
                     <p className="font-sans leading-relaxed">
                       {lang === 'en'
-                        ? '✓ DHL Premium delivery (GoGreen Climate Neutral). Flat-rate €4.90, free on orders above €50.00. Ships in 2-4 business days.'
-                        : '✓ DHL GoGreen (Klimaneutraler Premium-Versand). Pauschal 4,90 €, komplett kostenlos ab 50,00 € Bestellwert. Lieferzeit ca. 2-4 Werktage.'}
+                        ? '✓ DHL Premium delivery (GoGreen Climate Neutral). Shipping costs are on us — already included in the price. Ships in 2-4 business days.'
+                        : '✓ DHL GoGreen (Klimaneutraler Premium-Versand). Versandkosten auf unseren Nacken ✌️ — schon im Preis inklusive. Lieferzeit ca. 2-4 Werktage.'}
                     </p>
                   </div>
 

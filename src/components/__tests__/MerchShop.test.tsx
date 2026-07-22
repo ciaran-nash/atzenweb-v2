@@ -15,8 +15,8 @@ function calcSubtotal(cart: CartItem[]): number {
   }, 0);
 }
 
-function calcShipping(subtotal: number): number {
-  return subtotal > 50 ? 0 : 4.90;
+function calcShipping(_subtotal: number): number {
+  return 0; // Versand ist in allen Produktpreisen inklusive
 }
 
 function calcTotal(cart: CartItem[]): number {
@@ -116,18 +116,14 @@ describe('MerchShop Cart Logic', () => {
     expect(calcSubtotal(cart)).toBeCloseTo(expectedSubtotal);
   });
 
-  it('applies free shipping above 50', () => {
+  it('never charges shipping, regardless of subtotal', () => {
     expect(calcShipping(60)).toBe(0);
-    expect(calcShipping(50.01)).toBe(0);
+    expect(calcShipping(50)).toBe(0);
+    expect(calcShipping(0)).toBe(0);
+    expect(calcShipping(25)).toBe(0);
   });
 
-  it('charges shipping below or at 50', () => {
-    expect(calcShipping(50)).toBe(4.90);
-    expect(calcShipping(0)).toBe(4.90);
-    expect(calcShipping(25)).toBe(4.90);
-  });
-
-  it('calculates total with free shipping over 50', () => {
+  it('calculates total equal to subtotal for a high-value cart', () => {
     const cart = [
       { item: hoodie, quantity: 2, selectedSize: 'L' },
     ];
@@ -136,12 +132,12 @@ describe('MerchShop Cart Logic', () => {
     expect(calcTotal(cart)).toBeCloseTo(sub);
   });
 
-  it('calculates total with shipping under 50', () => {
+  it('calculates total equal to subtotal for a low-value cart (shipping still included)', () => {
     const cart = [
-      { item: hoodie, quantity: 1 },
+      { item: shirt, quantity: 1 },
     ];
     const sub = calcSubtotal(cart);
     expect(sub).toBeLessThan(50);
-    expect(calcTotal(cart)).toBeCloseTo(sub + 4.90);
+    expect(calcTotal(cart)).toBeCloseTo(sub);
   });
 });
