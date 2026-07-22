@@ -34,7 +34,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     const { default: Stripe } = await import('stripe');
-    const stripe = new Stripe(stripeKey, { apiVersion: '2025-03-31' as any });
+    const stripe = new Stripe(stripeKey);
 
     const sig = req.headers['stripe-signature'] as string;
     const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;

@@ -42,7 +42,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return;
     }
 
-    const stripe = new Stripe(stripeKey, { apiVersion: '2025-03-31' as any });
+    const stripe = new Stripe(stripeKey);
 
     const lineItems = items.map((cartItem: any) => {
       const unitAmount = Math.round((cartItem.item.promoPrice || cartItem.item.price) * 100);
