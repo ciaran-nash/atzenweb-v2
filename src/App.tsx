@@ -320,7 +320,11 @@ export default function App() {
 
       <div id="shop"><MerchShop lang={lang} onAddCartFeedback={handleTriggerNotification} /></div>
 
-      <img src="/elemente/Strich_02.png" alt="" aria-hidden="true" className="w-full" />
+      <div className="px-6 bg-canvas">
+        <div className="content-width">
+          <img src="/elemente/Strich_02.png" alt="" aria-hidden="true" className="w-full" />
+        </div>
+      </div>
 
       <InstagramFeed lang={lang} />
 

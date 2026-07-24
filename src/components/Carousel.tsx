@@ -24,7 +24,8 @@ export default function Carousel() {
 
   return (
     <section className="w-full bg-canvas" aria-label="Atzengold Hero">
-      <div className="relative w-full aspect-video overflow-hidden">
+      <div className="content-width">
+        <div className="relative w-full aspect-video overflow-hidden">
         {/* Slides */}
         {slides.map((slide, idx) => (
           <div
@@ -74,6 +75,7 @@ export default function Carousel() {
             />
           ))}
         </div>
+      </div>
       </div>
     </section>
   );
