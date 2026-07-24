@@ -148,8 +148,8 @@ export default function Testimonials({ lang = 'de' }: { lang?: string }) {
   const thirdColumn = testimonials.slice(6, 9);
 
   return (
-    <section className="bg-canvas dark:bg-primary-deep py-32 relative overflow-hidden" style={{ backgroundImage: 'url(/elemente/Backgroundelement_PLACEHOLDER.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-      <div className="content-width px-6 sm:px-12 relative z-10">
+    <section className="content-width bg-canvas dark:bg-primary-deep py-32 relative overflow-hidden" style={{ backgroundImage: 'url(/elemente/Backgroundelement_PLACEHOLDER.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div className="px-6 sm:px-12 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
