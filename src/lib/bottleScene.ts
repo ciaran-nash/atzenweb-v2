@@ -31,7 +31,7 @@ const FINISHES: FinishPreset[] = [
 ]
 
 const LABEL_CONFIGS: LabelSlot[] = [
-  { id: 'shoulder', kind: 'cone', face: 'front', arcDeg: 112, rBot: 2.92, rTop: 1.32, y0: 16.5, y1: 18.9 },
+  { id: 'shoulder', kind: 'cone', face: 'front', arcDeg: 112, rBot: 2.92, rTop: 1.32, y0: 16.2, y1: 19.2 },
   { id: 'body', kind: 'cyl', face: 'front', arcDeg: 146, radius: 3.23, centerY: 8.0, height: 18.6, topArch: true },
   { id: 'back', kind: 'cyl', face: 'back', arcDeg: 146, radius: 3.23, centerY: 8.0, height: 18.6 },
 ]
