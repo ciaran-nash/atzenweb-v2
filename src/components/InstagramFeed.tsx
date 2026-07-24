@@ -55,8 +55,7 @@ export default function InstagramFeed({ lang }: InstagramFeedProps) {
                 onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
               />
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="opacity-0 group-hover:opacity-100 transition-opacity px-5 py-2.5 bg-accent text-on-accent rounded-full text-xs font-bold font-mono flex items-center gap-2 shadow-xl">
-                  <Instagram className="h-4 w-4" />
+                <span className="opacity-0 group-hover:opacity-100 transition-opacity text-white text-xs font-bold font-mono drop-shadow-lg">
                   {FOLLOW_LABEL[lang]}
                 </span>
               </div>
