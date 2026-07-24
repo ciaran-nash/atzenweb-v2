@@ -110,9 +110,9 @@ function SidebarContent({ lang, onLangChange, onNavClick }: {
 export default function Sidebar({ lang, onLangChange, isOpen, onClose }: SidebarProps) {
   return (
     <>
-      {/* Desktop sidebar — fixed, visible at lg+ */}
+      {/* Desktop sidebar — sticky, visible at lg+ */}
       <aside
-        className="fixed left-0 top-0 h-screen w-[210px] bg-canvas z-40 flex-col px-6 pt-8 pb-0 overflow-y-auto sidebar-scrollbar-hidden hidden lg:flex"
+        className="sticky top-0 h-screen w-[210px] bg-canvas z-40 flex-col px-6 pt-8 pb-0 overflow-y-auto sidebar-scrollbar-hidden hidden lg:flex shrink-0"
         style={{ scrollbarWidth: 'none', '-ms-overflowStyle': 'none' }}
       >
         <SidebarContent lang={lang} onLangChange={onLangChange} />
