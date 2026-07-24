@@ -450,11 +450,6 @@ html.dark .halftone-overlay::after {
   align-items: center;
 }
 
-/* ── White Outline for Crests and Year Badges ── */
-.crest-outline {
-  filter: drop-shadow(0 0 2px rgba(255,255,255,0.8)) drop-shadow(0 0 4px rgba(255,255,255,0.5));
-}
-
 /* ── Timeline Carousel — Left/Right Nav Buttons ── */
 .timeline-nav-btn {
   position: absolute;

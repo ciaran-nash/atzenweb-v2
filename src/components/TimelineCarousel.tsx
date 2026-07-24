@@ -168,7 +168,7 @@ function TimelineNav({
             <img
               src={item.yearImg}
               alt={item.year}
-              className="h-5 w-auto crest-outline"
+              className="h-5 w-auto"
             />
           </button>
         );

@@ -89,7 +89,7 @@ export default function RootsSection() {
               { src: '/elemente/berlin-crest.png', alt: 'Berlin' },
             ].map(crest => (
               <div key={crest.alt} className="flex flex-col items-center gap-3">
-                <img src={crest.src} alt={crest.alt} className="h-32 w-auto object-contain crest-outline" />
+                <img src={crest.src} alt={crest.alt} className="h-32 w-auto object-contain" />
                 <span className="sr-only">{crest.alt}</span>
               </div>
             ))}
