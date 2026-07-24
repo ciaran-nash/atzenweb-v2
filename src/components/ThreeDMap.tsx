@@ -465,14 +465,14 @@ export default function ThreeDMap({ onOpenDatenschutz }: ThreeDMapProps = {}) {
   };
 
   return (
-    <section id="map-finder" className="relative content-width py-16 bg-canvas-soft dark:bg-primary-deep" style={{ backgroundImage: 'url(/elemente/Backgroundelement_PLACEHOLDER.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    <section id="map-finder" className="relative content-width px-6 md:px-12 py-16 bg-canvas-soft dark:bg-primary-deep" style={{ backgroundImage: 'url(/elemente/Backgroundelement_PLACEHOLDER.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
       {/* ARIA Live Region for accessibility announcements */}
       <div className="sr-only" aria-live="polite" role="status">
         {announcement}
       </div>
 
       {/* Section Heading */}
-      <div className="mb-6 px-6">
+      <div className="mb-6">
         <IllustratedHeading
           text="Wo gibt es Atzengold?"
           src="/elemente/HEADLINE5_WoGibtEsAtzengold.png"
