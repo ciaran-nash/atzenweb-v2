@@ -32,7 +32,7 @@ export default function InstagramFeed({ lang }: InstagramFeedProps) {
         <IllustratedHeading
           text={HEADLINE[lang]}
           src="/elemente/HEADLINE4_InstagramCrap.png"
-          className="max-w-lg"
+          className="max-w-[16rem]"
         />
         <p className="font-mono text-sm" style={{ color: '#1A1A1A' }}>
           {lang === 'en' ? 'Expand your doomscrolling depression!' : 'Erweitere hier deine Doomscrolling Depression!'}
