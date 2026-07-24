@@ -54,7 +54,7 @@ export default function InstagramFeed({ lang }: InstagramFeedProps) {
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
               />
-              <div className="absolute inset-0 bg-brand-dark-900/0 group-hover:bg-brand-dark-900/30 transition-colors flex items-center justify-center">
+              <div className="absolute inset-0 flex items-center justify-center">
                 <span className="opacity-0 group-hover:opacity-100 transition-opacity px-5 py-2.5 bg-accent text-on-accent rounded-full text-xs font-bold font-mono flex items-center gap-2 shadow-xl">
                   <Instagram className="h-4 w-4" />
                   {FOLLOW_LABEL[lang]}

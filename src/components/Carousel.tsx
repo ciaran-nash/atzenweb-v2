@@ -41,41 +41,38 @@ export default function Carousel() {
           </div>
         ))}
 
-        {/* Bottom Navigation Bar */}
-        <div className="absolute bottom-4 left-0 right-0 z-10 flex items-center justify-between px-4">
-          {/* Left Arrow */}
-          <button
-            onClick={prevSlide}
-            className="p-2 bg-black/40 hover:bg-black/60 text-white rounded transition-colors"
-            aria-label="Previous slide"
-          >
-            <ChevronLeft size={24} />
-          </button>
+        {/* Left Arrow — vertically centered */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2 text-white/80 hover:text-white transition-colors"
+          aria-label="Previous slide"
+        >
+          <ChevronLeft size={32} />
+        </button>
 
-          {/* Dot Indicators */}
-          <div className="flex gap-2">
-            {slides.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentSlide(idx)}
-                className={`w-2 h-2 rounded-full transition-colors ${
-                  idx === currentSlide
-                    ? 'bg-white'
-                    : 'bg-white/50 hover:bg-white/70'
-                }`}
-                aria-label={`Go to slide ${idx + 1}`}
-              />
-            ))}
-          </div>
+        {/* Right Arrow — vertically centered */}
+        <button
+          onClick={nextSlide}
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2 text-white/80 hover:text-white transition-colors"
+          aria-label="Next slide"
+        >
+          <ChevronRight size={32} />
+        </button>
 
-          {/* Right Arrow */}
-          <button
-            onClick={nextSlide}
-            className="p-2 bg-black/40 hover:bg-black/60 text-white rounded transition-colors"
-            aria-label="Next slide"
-          >
-            <ChevronRight size={24} />
-          </button>
+        {/* Bottom Dot Indicators */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex gap-2">
+          {slides.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentSlide(idx)}
+              className={`w-2 h-2 rounded-full transition-colors ${
+                idx === currentSlide
+                  ? 'bg-white'
+                  : 'bg-white/50 hover:bg-white/70'
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
         </div>
       </div>
     </section>

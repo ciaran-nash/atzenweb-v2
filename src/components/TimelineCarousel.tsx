@@ -1,5 +1,7 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { motion } from 'motion/react';
+import ChevronLeft from 'lucide-react/dist/esm/icons/chevron-left';
+import ChevronRight from 'lucide-react/dist/esm/icons/chevron-right';
 import { Language } from '../types';
 
 interface TimelineCarouselProps {
@@ -166,7 +168,7 @@ function TimelineNav({
             <img
               src={item.yearImg}
               alt={item.year}
-              className="h-5 w-auto"
+              className="h-5 w-auto crest-outline"
             />
           </button>
         );
@@ -179,7 +181,6 @@ export default function TimelineCarousel({ lang }: TimelineCarouselProps) {
   const outerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const isScrollingRef = useRef(false);
 
   const scrollToSlide = useCallback((index: number) => {
     const track = trackRef.current;
@@ -212,47 +213,6 @@ export default function TimelineCarousel({ lang }: TimelineCarouselProps) {
     return () => track.removeEventListener('scroll', handleScroll);
   }, [activeIndex]);
 
-  // Scrolljacking: intercept vertical wheel → horizontal carousel scroll
-  useEffect(() => {
-    const outer = outerRef.current;
-    const track = trackRef.current;
-    if (!outer || !track) return;
-
-    const handleWheel = (e: WheelEvent) => {
-      // Only intercept vertical scrolling (deltaY dominant)
-      if (Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
-
-      const maxScroll = track.scrollWidth - track.clientWidth;
-      const atStart = track.scrollLeft <= 0;
-      const atEnd = track.scrollLeft >= maxScroll - 1;
-
-      // If at the start scrolling up, or at the end scrolling down — release to page scroll
-      if ((atStart && e.deltaY < 0) || (atEnd && e.deltaY > 0)) {
-        return;
-      }
-
-      e.preventDefault();
-
-      // Smooth step: snap to next/prev slide based on scroll direction
-      if (!isScrollingRef.current) {
-        isScrollingRef.current = true;
-
-        const direction = e.deltaY > 0 ? 1 : -1;
-        const nextIndex = Math.max(0, Math.min(SLIDES.length - 1, activeIndex + direction));
-        const nextSlide = track.children[nextIndex] as HTMLElement | undefined;
-        if (!nextSlide) return;
-
-        track.scrollTo({ left: nextSlide.offsetLeft, behavior: 'smooth' });
-
-        // Cooldown to prevent rapid-fire snapping
-        setTimeout(() => { isScrollingRef.current = false; }, 600);
-      }
-    };
-
-    outer.addEventListener('wheel', handleWheel, { passive: false });
-    return () => outer.removeEventListener('wheel', handleWheel);
-  }, [activeIndex]);
-
   const handleYearClick = (index: number) => {
     scrollToSlide(index);
   };
@@ -282,6 +242,24 @@ export default function TimelineCarousel({ lang }: TimelineCarouselProps) {
 
   return (
     <div ref={outerRef} className="timeline-carousel-outer relative" tabIndex={0} role="region" aria-label="Timeline carousel, use arrow keys to navigate">
+      {/* Left Arrow */}
+      <button
+        onClick={() => { const prev = Math.max(0, activeIndex - 1); scrollToSlide(prev); }}
+        className="timeline-nav-btn left-2 md:left-4"
+        aria-label="Previous slide"
+      >
+        <ChevronLeft size={28} />
+      </button>
+
+      {/* Right Arrow */}
+      <button
+        onClick={() => { const next = Math.min(SLIDES.length - 1, activeIndex + 1); scrollToSlide(next); }}
+        className="timeline-nav-btn right-2 md:right-4"
+        aria-label="Next slide"
+      >
+        <ChevronRight size={28} />
+      </button>
+
       {/* Horizontal scroll track */}
       <div ref={trackRef} className="timeline-carousel-track">
         {SLIDES.map((slide, idx) => (

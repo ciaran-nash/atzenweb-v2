@@ -298,7 +298,7 @@ export default function MerchShop({ lang, onAddCartFeedback }: MerchShopProps) {
                 {/* Listing metadata info */}
                 <div className="space-y-2 grow flex flex-col justify-between">
                   <div>
-                    <span className="text-[10px] uppercase font-mono font-bold tracking-wider text-ink dark:text-canvas">{item.category}</span>
+                    <span className="text-[10px] uppercase font-handwritten font-bold tracking-wider text-ink dark:text-canvas">{item.category}</span>
                     <h3 className="text-2xl font-handwritten font-bold text-ink dark:text-canvas leading-snug mt-1 normal-case">
                       {t[`shopItem${item.id.toUpperCase()}Name` as keyof typeof t] || item.name}
                     </h3>

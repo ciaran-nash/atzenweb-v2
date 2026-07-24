@@ -16,7 +16,7 @@ export function IllustratedHeading({ level = 2, text, src, className = '' }: Pro
         alt=""
         aria-hidden="true"
         className={`block h-auto ${className}`}
-        style={{ maxWidth: 'min(100%, calc(100vw - 3rem))' }}
+        style={{ width: 'auto', maxWidth: 'none' }}
       />
     </Tag>
   )

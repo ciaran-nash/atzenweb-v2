@@ -27,7 +27,7 @@ export default function HeritageCrests({ lang }: HeritageCrestsProps) {
         <img 
           src="https://upload.wikimedia.org/wikipedia/commons/d/d2/Bayern_Wappen.svg" 
           alt="Bavaria Crest" 
-          className="w-16 h-20 object-contain drop-shadow-md select-none mix-blend-multiply"
+          className="w-16 h-20 object-contain drop-shadow-md select-none mix-blend-multiply crest-outline"
         />
       )
     },
@@ -40,7 +40,7 @@ export default function HeritageCrests({ lang }: HeritageCrestsProps) {
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/9/9c/Frankenrechen.svg"
           alt="Franken Crest"
-          className="w-16 h-20 object-contain drop-shadow-md select-none mix-blend-multiply"
+          className="w-16 h-20 object-contain drop-shadow-md select-none mix-blend-multiply crest-outline"
         />
       )
     },
@@ -53,7 +53,7 @@ export default function HeritageCrests({ lang }: HeritageCrestsProps) {
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/9/92/Wappen_F%C3%BCrth.svg"
           alt="Fürth Crest"
-          className="w-16 h-20 object-contain drop-shadow-md select-none mix-blend-multiply"
+          className="w-16 h-20 object-contain drop-shadow-md select-none mix-blend-multiply crest-outline"
         />
       )
     },
@@ -66,7 +66,7 @@ export default function HeritageCrests({ lang }: HeritageCrestsProps) {
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/8/8c/DEU_Berlin_COA.svg"
           alt="Berlin Crest"
-          className="w-16 h-20 object-contain drop-shadow-md select-none mix-blend-multiply"
+          className="w-16 h-20 object-contain drop-shadow-md select-none mix-blend-multiply crest-outline"
         />
       )
     }
@@ -127,7 +127,7 @@ export default function HeritageCrests({ lang }: HeritageCrestsProps) {
 
         {/* Card 2: The Model */}
         <div className="bg-canvas-soft dark:bg-brand-dark-900/40 border border-ink/10 dark:border-canvas/10 p-6 rounded-md shadow-sm relative group hover:-translate-y-1 transition-all duration-300">
-          <div className="absolute top-0 left-0 w-2 h-full bg-primary rounded-l-md" />
+          <div className="absolute top-0 left-0 w-2 h-full bg-ink/20 rounded-l-md" />
           <span className="text-[10px] font-mono tracking-widest text-primary uppercase font-bold block mb-2">// 02. {lang === 'en' ? 'BREWERY MODEL' : 'BRAUVERFAHREN'}</span>
           <h5 className="text-2xl font-handwritten font-black text-ink dark:text-canvas uppercase mb-3">{lang === 'en' ? 'Contract Brewing' : 'Lohnbrauen'}</h5>
           <p className="text-xs leading-relaxed text-ink-secondary dark:text-canvas/80 font-medium font-sans">
