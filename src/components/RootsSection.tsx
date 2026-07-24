@@ -115,21 +115,21 @@ export default function RootsSection() {
             <div className="absolute top-3 left-3 flex gap-2">
               <button
                 onClick={toggleVideoPlayPause}
-                className="p-2 bg-black/40 hover:bg-black/60 text-white rounded transition-colors"
+                className="p-2 text-white hover:text-white/80 transition-colors"
                 aria-label={isVideoPlaying ? 'Pause video' : 'Play video'}
               >
                 {isVideoPlaying ? <Pause size={18} /> : <Play size={18} />}
               </button>
               <button
                 onClick={toggleVideoMute}
-                className="p-2 bg-black/40 hover:bg-black/60 text-white rounded transition-colors"
+                className="p-2 text-white hover:text-white/80 transition-colors"
                 aria-label={isVideoMuted ? 'Unmute video' : 'Mute video'}
               >
                 {isVideoMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
               </button>
               <button
                 onClick={toggleVideoFullscreen}
-                className="p-2 bg-black/40 hover:bg-black/60 text-white rounded transition-colors"
+                className="p-2 text-white hover:text-white/80 transition-colors"
                 aria-label="Toggle fullscreen"
               >
                 <Maximize size={18} />
