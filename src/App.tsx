@@ -247,10 +247,10 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen font-sans scroll-smooth lg:pl-[210px] pl-0 light">
+    <div className="min-h-screen font-sans scroll-smooth pl-0 light">
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 lg:focus:left-[220px] focus:z-[100] focus:bg-accent focus:text-ink focus:px-4 focus:py-2 focus:font-bold focus:text-sm focus:shadow-lg focus:outline-none"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-accent focus:text-ink focus:px-4 focus:py-2 focus:font-bold focus:text-sm focus:shadow-lg focus:outline-none"
       >
         {lang === 'en' ? 'Skip to main content' : 'Zum Hauptinhalt springen'}
       </a>
@@ -299,69 +299,73 @@ export default function App() {
         <AgeGate lang={lang} onVerified={handleVerified} />
       )}
 
-      <Sidebar lang={lang} onLangChange={handleLanguageSwitch} isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <div className="flex justify-center">
+        <Sidebar lang={lang} onLangChange={handleLanguageSwitch} isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-      <main id="main-content">
-        <h1 className="sr-only">Atzengold – Fränkisches Kellerbier</h1>
-        <Carousel />
-      </main>
+        <div className="flex-1 min-w-0">
+          <main id="main-content">
+            <h1 className="sr-only">Atzengold – Fränkisches Kellerbier</h1>
+            <Carousel />
+          </main>
 
-      <RootsSection />
+          <RootsSection />
 
-      <div className="px-6 bg-canvas">
-        <div className="content-width">
-          <img src="/elemente/Strich_01.png" alt="" aria-hidden="true" className="w-full" />
+          <div className="px-6 bg-canvas">
+            <div className="content-width">
+              <img src="/elemente/Strich_01.png" alt="" aria-hidden="true" className="w-full" />
+            </div>
+          </div>
+
+          <div id="story"><StoryAndBrew lang={lang} /></div>
+
+          <div id="testimonials"><Testimonials lang={lang} /></div>
+
+          <div id="shop"><MerchShop lang={lang} onAddCartFeedback={handleTriggerNotification} /></div>
+
+          <div className="px-6 bg-canvas">
+            <div className="content-width">
+              <img src="/elemente/Strich_02.png" alt="" aria-hidden="true" className="w-full" />
+            </div>
+          </div>
+
+          <InstagramFeed lang={lang} />
+
+          <Suspense fallback={<div className="py-32 text-center text-ink/40">Loading map…</div>}>
+            <ThreeDMap onOpenDatenschutz={() => setShowDatenschutz(true)} />
+          </Suspense>
+
+          {checkoutOrderId && (
+            <CheckoutSuccess lang={lang} orderId={checkoutOrderId} onClose={handleCheckoutClose} />
+          )}
+
+          {showCheckoutCancel && (
+            <CheckoutCancelOverlay lang={lang} onClose={handleCheckoutClose} />
+          )}
+
+          <Widerrufsrecht lang={lang} isOpen={showWiderrufsrecht} onClose={() => setShowWiderrufsrecht(false)} />
+
+          <AGB lang={lang} isOpen={showAGB} onClose={() => setShowAGB(false)} />
+
+          <AnimatePresence>
+            {activeNotification && (
+              <NotificationToast message={activeNotification} lang={lang} onClose={() => setActiveNotification(null)} />
+            )}
+          </AnimatePresence>
+
+          <Footer
+            lang={lang}
+            onShowImpressum={() => setShowImpressum(true)}
+            onShowDatenschutz={() => setShowDatenschutz(true)}
+            onShowAGB={() => setShowAGB(true)}
+            onShowWiderrufsrecht={() => setShowWiderrufsrecht(true)}
+            onShowCookies={() => setShowCookieBanner(true)}
+            onLangToggle={handleLanguageSwitch}
+          />
+
+          <div className="sr-only" aria-live="polite" role="status">
+            {activeNotification || ''}
+          </div>
         </div>
-      </div>
-
-      <div id="story"><StoryAndBrew lang={lang} /></div>
-
-      <div id="testimonials"><Testimonials lang={lang} /></div>
-
-      <div id="shop"><MerchShop lang={lang} onAddCartFeedback={handleTriggerNotification} /></div>
-
-      <div className="px-6 bg-canvas">
-        <div className="content-width">
-          <img src="/elemente/Strich_02.png" alt="" aria-hidden="true" className="w-full" />
-        </div>
-      </div>
-
-      <InstagramFeed lang={lang} />
-
-      <Suspense fallback={<div className="py-32 text-center text-ink/40">Loading map…</div>}>
-        <ThreeDMap onOpenDatenschutz={() => setShowDatenschutz(true)} />
-      </Suspense>
-
-      {checkoutOrderId && (
-        <CheckoutSuccess lang={lang} orderId={checkoutOrderId} onClose={handleCheckoutClose} />
-      )}
-
-      {showCheckoutCancel && (
-        <CheckoutCancelOverlay lang={lang} onClose={handleCheckoutClose} />
-      )}
-
-      <Widerrufsrecht lang={lang} isOpen={showWiderrufsrecht} onClose={() => setShowWiderrufsrecht(false)} />
-
-      <AGB lang={lang} isOpen={showAGB} onClose={() => setShowAGB(false)} />
-
-      <AnimatePresence>
-        {activeNotification && (
-          <NotificationToast message={activeNotification} lang={lang} onClose={() => setActiveNotification(null)} />
-        )}
-      </AnimatePresence>
-
-      <Footer
-        lang={lang}
-        onShowImpressum={() => setShowImpressum(true)}
-        onShowDatenschutz={() => setShowDatenschutz(true)}
-        onShowAGB={() => setShowAGB(true)}
-        onShowWiderrufsrecht={() => setShowWiderrufsrecht(true)}
-        onShowCookies={() => setShowCookieBanner(true)}
-        onLangToggle={handleLanguageSwitch}
-      />
-
-      <div className="sr-only" aria-live="polite" role="status">
-        {activeNotification || ''}
       </div>
     </div>
   );
