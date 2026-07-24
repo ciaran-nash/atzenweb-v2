@@ -84,9 +84,9 @@ function SidebarContent({ lang, onLangChange, onNavClick }: {
         }>
           <Bottle3D
             labels={{
-              shoulder: '/labels/Artzengold_Georgenbraeu_Hals_Dez25.webp',
-              body: '/labels/Artzengold_Georgenbraeu_Bauch_Dez25.webp',
-              back: '/labels/Artzengold_Georgenbraeu_Ruecken_Dez25.webp',
+              shoulder: '/labels/atzengold-bottle-neck-label.webp',
+              body: '/labels/atzengold-bottle-front-label.webp',
+              back: '/labels/atzengold-bottle-back-label.webp',
             }}
             autoRotate={true}
             className="w-[min(92vw,500px)] h-[min(64vh,560px)]"
