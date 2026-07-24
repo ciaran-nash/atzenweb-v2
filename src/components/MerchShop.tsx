@@ -244,7 +244,7 @@ export default function MerchShop({ lang, onAddCartFeedback }: MerchShopProps) {
             <IllustratedHeading
               text={t.shopTitle}
               src="/elemente/HEADLINE3_AtzenShop.png"
-              className=""
+              className="max-w-[825px]"
             />
             <p className="mt-4 max-w-2xl text-sm md:text-base font-sans font-bold" style={{ color: '#1A1A1A' }}>
               {t.shopSubtitle}
