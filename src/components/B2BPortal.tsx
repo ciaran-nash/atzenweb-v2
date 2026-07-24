@@ -110,7 +110,7 @@ export default function B2BPortal({ lang }: B2BPortalProps) {
          <span className="font-display text-[30vw] tracking-tighter rotate-12 select-none">B2B</span>
       </div>
 
-      <div className="relative mx-auto max-w-7xl z-10">
+      <div className="relative content-width z-10">
         
         {/* Header Block */}
         <div className="mb-12 border-b border-ink/10 dark:border-canvas/10 pb-8">

@@ -64,7 +64,7 @@ export default function RootsSection() {
 
   return (
     <section ref={sectionRef} id="roots" aria-label="Unsere Wurzeln" className="py-12 px-6 bg-canvas">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div className="content-width grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Left column: Text, headline, crests */}
         <div className="space-y-8 lg:sticky lg:top-24 lg:self-start">
           <div className="space-y-4 font-mono text-sm leading-relaxed text-black">

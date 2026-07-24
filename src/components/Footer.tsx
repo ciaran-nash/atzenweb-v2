@@ -25,7 +25,7 @@ export default function Footer({
 }: FooterProps) {
   return (
     <footer className="bg-canvas border-t border-black/10 py-16 px-4 md:px-8 transition-colors duration-200">
-      <div className="mx-auto max-w-7xl">
+      <div className="content-width">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Left Column: Crests, Logo, Tagline & Contact info */}
           <div className="lg:col-span-4 space-y-6 flex flex-col items-center lg:items-start text-center lg:text-left">

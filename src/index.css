@@ -471,3 +471,10 @@ html.dark .halftone-overlay::after {
 .timeline-nav-btn:hover {
   color: white;
 }
+
+/* ── Retro Content Width (1100px fixed) ── */
+.content-width {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}

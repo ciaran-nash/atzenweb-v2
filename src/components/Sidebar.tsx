@@ -112,7 +112,7 @@ export default function Sidebar({ lang, onLangChange, isOpen, onClose }: Sidebar
     <>
       {/* Desktop sidebar — fixed, visible at lg+ */}
       <aside
-        className="fixed left-0 top-0 h-screen w-[210px] bg-canvas border-r border-ink/15 z-40 flex-col px-6 pt-8 pb-0 overflow-y-auto sidebar-scrollbar-hidden hidden lg:flex"
+        className="fixed left-0 top-0 h-screen w-[210px] bg-canvas z-40 flex-col px-6 pt-8 pb-0 overflow-y-auto sidebar-scrollbar-hidden hidden lg:flex"
         style={{ scrollbarWidth: 'none', '-ms-overflowStyle': 'none' }}
       >
         <SidebarContent lang={lang} onLangChange={onLangChange} />
@@ -139,7 +139,7 @@ export default function Sidebar({ lang, onLangChange, isOpen, onClose }: Sidebar
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 250 }}
-              className="fixed left-0 top-0 h-screen w-[280px] max-w-[85vw] bg-canvas border-r border-ink/15 z-50 flex flex-col overflow-y-auto lg:hidden"
+              className="fixed left-0 top-0 h-screen w-[280px] max-w-[85vw] bg-canvas z-50 flex flex-col overflow-y-auto lg:hidden"
               style={{ scrollbarWidth: 'none', '-ms-overflowStyle': 'none' }}
             >
               {/* Close button */}

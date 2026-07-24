@@ -309,7 +309,7 @@ export default function App() {
       <RootsSection />
 
       <div className="px-6 bg-canvas">
-        <div className="max-w-7xl mx-auto">
+        <div className="content-width">
           <img src="/elemente/Strich_01.png" alt="" aria-hidden="true" className="w-full" />
         </div>
       </div>

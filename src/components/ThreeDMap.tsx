@@ -472,7 +472,7 @@ export default function ThreeDMap({ onOpenDatenschutz }: ThreeDMapProps = {}) {
       </div>
 
       {/* Section Heading */}
-      <div className="max-w-7xl mx-auto mb-6">
+      <div className="content-width mb-6">
         <IllustratedHeading
           text="Wo gibt es Atzengold?"
           src="/elemente/HEADLINE5_WoGibtEsAtzengold.png"
@@ -481,7 +481,7 @@ export default function ThreeDMap({ onOpenDatenschutz }: ThreeDMapProps = {}) {
         <p className="text-sm md:text-base mt-2 max-w-2xl font-bold" style={{ color: '#edcea7' }}>Hier werden alle unsere Bezugsquellen gelistet — von der gemütlichen Kneipe über den Späti bis zur Gastronomie. Täglich frisch geliefert, solange der Vorrat reicht.</p>
       </div>
 
-      <div className="max-w-7xl mx-auto flex flex-col overflow-hidden shadow-2xl border border-brand-dark-900/10 dark:border-canvas/10 bg-canvas dark:bg-brand-dark-900">
+      <div className="content-width flex flex-col overflow-hidden shadow-2xl border border-brand-dark-900/10 dark:border-canvas/10 bg-canvas dark:bg-brand-dark-900">
         
         {/* Mobile View Toggles */}
         <div className="flex lg:hidden bg-canvas-soft dark:bg-brand-dark-900 border-b border-ink/10 dark:border-canvas/10 p-2 justify-center gap-2">

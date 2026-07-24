@@ -170,7 +170,7 @@ export default function BrandHub({ lang, isOpen, onClose, onTriggerNotification,
     <div className={variant === 'embedded' ? 'min-h-screen bg-canvas' : 'fixed inset-0 bg-canvas z-50 overflow-y-auto block backdrop-blur-md'} id="brand-guidelines-hub">
       {/* Top Banner Header of Brand Portal */}
       <div className={`${variant === 'embedded' ? '' : 'sticky top-0'} bg-canvas-soft border border-brand-dark-900/10 rounded-xl shadow-lg/90 border-b border-brand-dark-900 z-50`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div className="content-width px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <span className="p-2 border border-accent/20 rounded bg-accent/10 text-accent font-mono text-xs font-bold">
               SYSTEM v1.0
@@ -199,7 +199,7 @@ export default function BrandHub({ lang, isOpen, onClose, onTriggerNotification,
       </div>
 
       {/* Main Hub Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
+      <div className="content-width px-4 sm:px-6 lg:px-8 py-10 space-y-10">
         
         {/* Intro Executive Summary Frame */}
         <div className="relative rounded-3xl border border-brand-dark-900 bg-ink p-8 md:p-12 overflow-hidden shadow-2xl">

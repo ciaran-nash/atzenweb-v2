@@ -27,7 +27,7 @@ const POSTS = [
 export default function InstagramFeed({ lang }: InstagramFeedProps) {
   return (
     <section id="instagram-feed" className="py-32 bg-texture-paper text-ink relative overflow-hidden transition-all duration-300">
-      <div className="mx-auto max-w-7xl px-6 md:px-12 relative z-10 flex flex-col items-start gap-10">
+      <div className="content-width relative z-10 flex flex-col items-start gap-10">
 
         <IllustratedHeading
           text={HEADLINE[lang]}

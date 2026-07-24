@@ -236,7 +236,7 @@ export default function MerchShop({ lang, onAddCartFeedback }: MerchShopProps) {
       {/* Decorative backdrop accent */}
       <div className="absolute top-1/2 right-1/4 h-80 w-80 rounded-full bg-accent/20 blur-3xl pointer-events-none" />
 
-      <div className="relative mx-auto max-w-7xl">
+      <div className="relative content-width">
         
         {/* Header Display */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
