@@ -302,7 +302,7 @@ export default function App() {
       <div className="flex justify-center">
         <Sidebar lang={lang} onLangChange={handleLanguageSwitch} isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-        <div className="flex-1 min-w-0">
+        <div className="min-w-0">
           <main id="main-content">
             <h1 className="sr-only">Atzengold – Fränkisches Kellerbier</h1>
             <Carousel />
