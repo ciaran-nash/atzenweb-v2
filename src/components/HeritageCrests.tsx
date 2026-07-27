@@ -27,7 +27,7 @@ export default function HeritageCrests({ lang }: HeritageCrestsProps) {
         <img 
           src="https://upload.wikimedia.org/wikipedia/commons/d/d2/Bayern_Wappen.svg" 
           alt="Bavaria Crest" 
-          className="w-16 h-20 object-contain drop-shadow-md select-none mix-blend-multiply"
+          className="w-16 h-20 object-contain drop-shadow-md select-none mix-blend-multiply grayscale"
         />
       )
     },
@@ -40,7 +40,7 @@ export default function HeritageCrests({ lang }: HeritageCrestsProps) {
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/9/9c/Frankenrechen.svg"
           alt="Franken Crest"
-          className="w-16 h-20 object-contain drop-shadow-md select-none mix-blend-multiply"
+          className="w-16 h-20 object-contain drop-shadow-md select-none mix-blend-multiply grayscale"
         />
       )
     },
@@ -53,7 +53,7 @@ export default function HeritageCrests({ lang }: HeritageCrestsProps) {
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/9/92/Wappen_F%C3%BCrth.svg"
           alt="Fürth Crest"
-          className="w-16 h-20 object-contain drop-shadow-md select-none mix-blend-multiply"
+          className="w-16 h-20 object-contain drop-shadow-md select-none mix-blend-multiply grayscale"
         />
       )
     },
@@ -66,7 +66,7 @@ export default function HeritageCrests({ lang }: HeritageCrestsProps) {
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/8/8c/DEU_Berlin_COA.svg"
           alt="Berlin Crest"
-          className="w-16 h-20 object-contain drop-shadow-md select-none mix-blend-multiply"
+          className="w-16 h-20 object-contain drop-shadow-md select-none mix-blend-multiply grayscale"
         />
       )
     }
