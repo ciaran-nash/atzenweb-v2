@@ -33,7 +33,7 @@ const FINISHES: FinishPreset[] = [
 const LABEL_CONFIGS: LabelSlot[] = [
   { id: 'shoulder', kind: 'cone', face: 'front', arcDeg: 112, rBot: 2.92, rTop: 1.32, y0: 16.2, y1: 19.2 },
   { id: 'body', kind: 'cyl', face: 'front', arcDeg: 146, radius: 3.23, centerY: 8.0, height: 18.6, topArch: true },
-  { id: 'back', kind: 'cyl', face: 'back', arcDeg: 146, radius: 3.23, centerY: 8.0, height: 18.6 },
+  { id: 'back', kind: 'cyl', face: 'back', arcDeg: 146, radius: 3.23, centerY: 7.07, height: 18.6 },
 ]
 
 function makePlaceholder(id: string): HTMLCanvasElement {
@@ -174,7 +174,7 @@ export class BottleScene {
       [3.20, 1.10], [3.20, 13.40], [3.18, 14.00], [3.10, 14.70],
       [2.94, 15.45], [2.68, 16.20], [2.34, 16.95], [1.96, 17.65],
       [1.58, 18.25], [1.30, 18.75], [1.16, 19.20], [1.12, 19.55],
-      [1.11, 21.05], [1.14, 21.35], [1.30, 21.62], [1.30, 22.00], [0.00, 22.00],
+      [1.11, 20.30], [1.14, 20.65], [1.30, 20.92], [1.30, 21.30], [0.00, 21.30],
     ].map(p => new THREE.Vector2(p[0], p[1]))
 
     const bottle = new THREE.Mesh(new THREE.LatheGeometry(profile, 96), this.glassMat)
@@ -276,15 +276,14 @@ export class BottleScene {
     const AMP = 0.085
     const SEG = FLUTES * 14
     const profile = [
-      [1.18, 21.45], [1.37, 21.50], [1.38, 21.68], [1.38, 21.90],
-      [1.34, 22.03], [1.26, 22.15], [1.10, 22.27], [0.86, 22.37],
-      [0.52, 22.45], [0.00, 22.50],
+      [1.18, 20.75], [1.37, 20.80], [1.38, 20.98], [1.38, 21.20],
+      [1.30, 21.30], [0.65, 21.40], [0.00, 21.42],
     ].map(p => new THREE.Vector2(p[0], p[1]))
 
     const geo = new THREE.LatheGeometry(profile, SEG)
 
     const fluteAt = (y: number) => {
-      const bot = 21.96, top = 22.17
+      const bot = 21.26, top = 21.30
       if (y <= bot) return 1
       if (y >= top) return 0
       const t = (y - bot) / (top - bot)
