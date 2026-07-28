@@ -87,7 +87,7 @@ export default function Footer({
 
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-black/10 flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-black/80">
-          <div className="text-center md:text-left font-mono">
+          <div className="text-center md:text-left text-[11px] font-mono">
             © {CURRENT_YEAR} Atzengold GbR. {lang === 'en' ? 'All rights reserved.' : 'Alle Rechte vorbehalten.'}
           </div>
 

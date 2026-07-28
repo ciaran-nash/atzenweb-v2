@@ -13,7 +13,7 @@ import ShieldCheck from 'lucide-react/dist/esm/icons/shield-check';
 import Shirt from 'lucide-react/dist/esm/icons/shirt';
 import GlassWater from 'lucide-react/dist/esm/icons/glass-water';
 import Tag from 'lucide-react/dist/esm/icons/tag';
-import ExternalLink from 'lucide-react/dist/esm/icons/external-link';
+import Eye from 'lucide-react/dist/esm/icons/eye';
 import { fetchMerch } from '../lib/public-api';
 import { MerchItem, CartItem, Language } from '../types';
 import { translations } from '../constants/translations';
@@ -238,6 +238,17 @@ export default function MerchShop({ lang, onAddCartFeedback }: MerchShopProps) {
 
       <div className="relative content-width">
         
+        {viewingProduct ? (
+          <ProductDetail
+            item={viewingProduct}
+            lang={lang}
+            onAddToCart={(item, size, options) => addToCart(item, size, options)}
+            onClose={() => { setViewingProduct(null); window.scrollTo(0, 0); }}
+            allItems={merchCatalogue}
+            onViewItem={(item) => { setViewingProduct(item); window.scrollTo(0, 0); }}
+          />
+        ) : (<>
+
         {/* Header Display */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
           <div>
@@ -283,7 +294,7 @@ export default function MerchShop({ lang, onAddCartFeedback }: MerchShopProps) {
                 )}
 
                 {/* Styled illustration frame placeholder */}
-                <div className="relative aspect-[4/3] bg-ink/5 dark:bg-canvas/5 flex items-center justify-center select-none mb-4 overflow-hidden group-hover:bg-ink/10 dark:group-hover:bg-canvas/10 transition-colors p-3">
+                <div onClick={() => { setViewingProduct(item); window.scrollTo(0, 0); }} className="relative aspect-[4/3] bg-ink/5 dark:bg-canvas/5 flex items-center justify-center select-none mb-4 overflow-hidden group-hover:bg-ink/10 dark:group-hover:bg-canvas/10 transition-colors p-3 cursor-pointer">
                   {(thumb?.startsWith('http') || thumb?.startsWith('/')) ? (
                     <img
                       src={thumb}
@@ -298,8 +309,8 @@ export default function MerchShop({ lang, onAddCartFeedback }: MerchShopProps) {
                 {/* Listing metadata info */}
                 <div className="space-y-2 grow flex flex-col justify-between">
                   <div>
-                    <span className="text-[10px] uppercase font-handwritten font-bold tracking-wider text-ink dark:text-canvas">{item.category}</span>
-                    <h3 className="text-2xl font-handwritten font-bold text-ink dark:text-canvas leading-snug mt-1 normal-case">
+                    <span className="text-[10px] uppercase font-mono font-bold tracking-wider text-ink dark:text-canvas">{item.category}</span>
+                    <h3 onClick={() => { setViewingProduct(item); window.scrollTo(0, 0); }} className="text-2xl font-mono font-bold text-ink dark:text-canvas leading-snug mt-1 normal-case cursor-pointer hover:underline">
                       {t[`shopItem${item.id.toUpperCase()}Name` as keyof typeof t] || item.name}
                     </h3>
                     <p className="text-xs font-bold font-sans text-ink dark:text-canvas mt-2 line-clamp-2">
@@ -331,11 +342,11 @@ export default function MerchShop({ lang, onAddCartFeedback }: MerchShopProps) {
                         {t.shopAddToCart}
                       </button>
                       <button
-                        onClick={() => setViewingProduct(item)}
+                        onClick={() => { setViewingProduct(item); window.scrollTo(0, 0); }}
                         className="cursor-pointer bg-canvas dark:bg-brand-dark-900 text-ink dark:text-canvas border border-ink/20 dark:border-canvas/20 hover:bg-ink/5 dark:hover:bg-canvas/5 font-display font-bold uppercase py-3 px-3 transition-all flex items-center justify-center text-sm"
                         aria-label={lang === 'en' ? 'View details' : 'Details ansehen'}
                       >
-                        <ExternalLink className="h-4 w-4" />
+                        <Eye className="h-4 w-4" />
                       </button>
                     </div>
 
@@ -346,6 +357,8 @@ export default function MerchShop({ lang, onAddCartFeedback }: MerchShopProps) {
             );
           })}
         </div>
+
+        </>)}
 
         {/* CART DRAWER BACKDROP MASK (Slide over mockup layout) */}
         {isCartOpen && (
@@ -627,14 +640,6 @@ export default function MerchShop({ lang, onAddCartFeedback }: MerchShopProps) {
 
       </div>
 
-      {viewingProduct && (
-        <ProductDetail
-          item={viewingProduct}
-          lang={lang}
-          onAddToCart={(item, size, options) => addToCart(item, size, options)}
-          onClose={() => setViewingProduct(null)}
-        />
-      )}
     </section>
   );
 }

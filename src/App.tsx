@@ -83,6 +83,13 @@ export default function App() {
   const [adminApiKey, setAdminApiKey] = useState<string | null>(null);
   const [adminSection, setAdminSection] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState<'home' | 'shop'>(() => {
+    if (window.location.hash === '#shop') {
+      window.scrollTo(0, 0);
+      return 'shop';
+    }
+    return 'home';
+  });
 
   useEffect(() => {
     document.documentElement.classList.add('light');
@@ -95,6 +102,8 @@ export default function App() {
 
   useEffect(() => {
     const hash = window.location.hash;
+
+    if (hash === '#shop') setCurrentPage('shop');
 
     if (hash === '#admin') {
       const stored = localStorage.getItem('ag_admin_key');
@@ -115,6 +124,8 @@ export default function App() {
 
     const onHashChange = () => {
       const h = window.location.hash;
+      if (h === '#shop') { setCurrentPage('shop'); window.scrollTo(0, 0); return; }
+      setCurrentPage('home');
       if (h === '#admin') {
         const stored = localStorage.getItem('ag_admin_key');
         if (stored) {
@@ -243,6 +254,40 @@ export default function App() {
           </AdminLayout>
         )}
       </Suspense>
+    );
+  }
+
+  if (currentPage === 'shop') {
+    return (
+      <div className="min-h-screen font-sans light">
+        <button
+          onClick={() => setSidebarOpen(true)}
+          aria-label="Menü öffnen"
+          className="fixed top-4 right-4 z-30 p-2.5 bg-canvas border border-ink/15 shadow-md lg:hidden hover:bg-canvas-soft transition-colors"
+        >
+          <Menu className="w-5 h-5 text-ink" />
+        </button>
+        <div className="noise-overlay" />
+        <BrandHub lang={lang} isOpen={showBrandHub} onClose={() => setShowBrandHub(false)} onTriggerNotification={handleTriggerNotification} />
+        <Datenschutz lang={lang} isOpen={showDatenschutz} onClose={() => setShowDatenschutz(false)} />
+        <Impressum lang={lang} isOpen={showImpressum} onClose={() => setShowImpressum(false)} />
+        <Widerrufsrecht lang={lang} isOpen={showWiderrufsrecht} onClose={() => setShowWiderrufsrecht(false)} />
+        <AGB lang={lang} isOpen={showAGB} onClose={() => setShowAGB(false)} />
+        <CookieBanner lang={lang} isOpen={showCookieBanner} onClose={() => setShowCookieBanner(false)} onConsentSaved={() => {}} onTriggerNotification={handleTriggerNotification} onShowPrivacy={() => setShowDatenschutz(true)} onShowImpressum={() => setShowImpressum(true)} />
+        {!isVerified && <AgeGate lang={lang} onVerified={handleVerified} />}
+        <div className="flex justify-center">
+          <Sidebar lang={lang} onLangChange={handleLanguageSwitch} isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} onLogoClick={() => { setCurrentPage('home'); window.location.hash = ''; }} />
+          <div className="min-w-0 w-full">
+            <MerchShop lang={lang} onAddCartFeedback={handleTriggerNotification} />
+            {checkoutOrderId && <CheckoutSuccess lang={lang} orderId={checkoutOrderId} onClose={handleCheckoutClose} />}
+            {showCheckoutCancel && <CheckoutCancelOverlay lang={lang} onClose={handleCheckoutClose} />}
+            <AnimatePresence>
+              {activeNotification && <NotificationToast message={activeNotification} lang={lang} onClose={() => setActiveNotification(null)} />}
+            </AnimatePresence>
+            <Footer lang={lang} onShowImpressum={() => setShowImpressum(true)} onShowDatenschutz={() => setShowDatenschutz(true)} onShowAGB={() => setShowAGB(true)} onShowWiderrufsrecht={() => setShowWiderrufsrecht(true)} onShowCookies={() => setShowCookieBanner(true)} onLangToggle={handleLanguageSwitch} />
+          </div>
+        </div>
+      </div>
     );
   }
 

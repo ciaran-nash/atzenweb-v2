@@ -137,7 +137,7 @@ function TimelineNav({
         src="/elemente/timeline-pagination/timeline-underline.png"
         alt=""
         aria-hidden="true"
-        className="absolute -bottom-1 left-0 h-3 w-auto pointer-events-none transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+        className="absolute -bottom-1 left-0 h-3 w-auto pointer-events-none transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] mix-blend-multiply"
       />
       {TIMELINE_NAV_ITEMS.map((item, i) => {
         if ('dots' in item) {
@@ -147,7 +147,7 @@ function TimelineNav({
               src={item.dots}
               alt=""
               aria-hidden="true"
-              className="h-2 w-auto flex-1 opacity-60 object-contain"
+              className="h-2 w-auto flex-1 opacity-60 object-contain mix-blend-multiply"
             />
           );
         }
@@ -161,14 +161,14 @@ function TimelineNav({
             key={item.year}
             ref={(el) => { yearRefs.current[i] = el; }}
             onClick={() => onYearClick(slideIdx)}
-            className={`cursor-pointer bg-transparent border-none p-0 transition-opacity duration-300 ${
+            className={`cursor-pointer bg-transparent border-none p-0 transition-opacity duration-300 mix-blend-multiply ${
               isActive ? 'opacity-100' : 'opacity-40 hover:opacity-70'
             }`}
           >
             <img
               src={item.yearImg}
               alt={item.year}
-              className="h-5 w-auto"
+              className="h-5 w-auto mix-blend-multiply"
             />
           </button>
         );

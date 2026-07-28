@@ -529,13 +529,13 @@ export default function ThreeDMap({ onOpenDatenschutz }: ThreeDMapProps = {}) {
                       Oder Adresse eingeben:
                     </label>
                     <div className="flex gap-2">
-                      <input 
+                      <input
                         id="address-search"
-                        type="text" 
+                        type="text"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        placeholder="z.B. Nürnberg, Fürth" 
-                        className="flex-1 border border-ink/20 dark:border-canvas/20 px-3 py-2 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary text-ink dark:text-canvas bg-canvas dark:bg-brand-dark-900"
+                        placeholder="z.B. Nürnberg, Fürth"
+                        className="flex-1 border-2 border-primary px-3 py-2 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary text-ink dark:text-canvas bg-white dark:bg-brand-dark-900"
                       />
                       <button 
                         type="submit"

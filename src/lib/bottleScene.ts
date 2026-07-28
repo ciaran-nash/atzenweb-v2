@@ -31,9 +31,9 @@ const FINISHES: FinishPreset[] = [
 ]
 
 const LABEL_CONFIGS: LabelSlot[] = [
-  { id: 'shoulder', kind: 'cone', face: 'front', arcDeg: 112, rBot: 2.92, rTop: 1.32, y0: 16.2, y1: 19.2 },
-  { id: 'body', kind: 'cyl', face: 'front', arcDeg: 146, radius: 3.23, centerY: 8.0, height: 18.6, topArch: true },
-  { id: 'back', kind: 'cyl', face: 'back', arcDeg: 146, radius: 3.23, centerY: 7.07, height: 18.6 },
+  { id: 'shoulder', kind: 'cone', face: 'front', arcDeg: 180, rBot: 2.96, rTop: 1.58, y0: 14.2, y1: 17.5 },
+  { id: 'body', kind: 'cyl', face: 'front', arcDeg: 146, radius: 3.23, centerY: 7.25, height: 11.5, topArch: true },
+  { id: 'back', kind: 'cyl', face: 'back', arcDeg: 146, radius: 3.23, centerY: 6.5, height: 11.5 },
 ]
 
 function makePlaceholder(id: string): HTMLCanvasElement {
@@ -166,15 +166,18 @@ export class BottleScene {
     })
 
     const metalMat = new THREE.MeshStandardMaterial({
-      color: 0xc9a24a, metalness: 1, roughness: 0.26, envMapIntensity: 1.6,
+      color: 0xcab86a, metalness: 0.75, roughness: 0.58, envMapIntensity: 0.7,
     })
 
     const profile: THREE.Vector2[] = [
       [0.00, 0.00], [2.55, 0.00], [3.05, 0.30], [3.18, 0.70],
-      [3.20, 1.10], [3.20, 13.40], [3.18, 14.00], [3.10, 14.70],
-      [2.94, 15.45], [2.68, 16.20], [2.34, 16.95], [1.96, 17.65],
-      [1.58, 18.25], [1.30, 18.75], [1.16, 19.20], [1.12, 19.55],
-      [1.11, 20.30], [1.14, 20.65], [1.30, 20.92], [1.30, 21.30], [0.00, 21.30],
+      [3.20, 1.10], [3.20, 13.10],
+      [3.18, 13.38], [3.11, 13.75], [2.96, 14.22],
+      [2.53, 15.22], [2.10, 16.22], [1.66, 17.22],
+      [1.23, 18.22], [1.12, 18.75],
+      [1.12, 19.25],
+      [1.16, 19.45], [1.21, 19.62], [1.21, 19.78], [1.16, 19.95], [1.12, 20.08],
+      [1.12, 20.15], [1.30, 20.42], [1.30, 20.80], [0.00, 20.80],
     ].map(p => new THREE.Vector2(p[0], p[1]))
 
     const bottle = new THREE.Mesh(new THREE.LatheGeometry(profile, 96), this.glassMat)
@@ -256,6 +259,7 @@ export class BottleScene {
       const mat = new THREE.MeshStandardMaterial({
         map: tex, roughness: 0.85, metalness: 0, envMapIntensity: 0.45,
         transparent: true, alphaTest: 0.1,
+        polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -40,
       })
       const mesh = new THREE.Mesh(this.panelGeometry(cfg), mat)
       mesh.renderOrder = 3
@@ -276,14 +280,14 @@ export class BottleScene {
     const AMP = 0.085
     const SEG = FLUTES * 14
     const profile = [
-      [1.18, 20.75], [1.37, 20.80], [1.38, 20.98], [1.38, 21.20],
-      [1.30, 21.30], [0.65, 21.40], [0.00, 21.42],
+      [1.18, 20.25], [1.37, 20.30], [1.38, 20.48], [1.38, 20.70],
+      [1.34, 20.80], [1.10, 20.97], [0.45, 21.12], [0.00, 21.15],
     ].map(p => new THREE.Vector2(p[0], p[1]))
 
     const geo = new THREE.LatheGeometry(profile, SEG)
 
     const fluteAt = (y: number) => {
-      const bot = 21.26, top = 21.30
+      const bot = 20.76, top = 20.80
       if (y <= bot) return 1
       if (y >= top) return 0
       const t = (y - bot) / (top - bot)
