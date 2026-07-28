@@ -465,23 +465,23 @@ export default function ThreeDMap({ onOpenDatenschutz }: ThreeDMapProps = {}) {
   };
 
   return (
-    <section id="map-finder" className="relative w-full py-16 bg-canvas-soft dark:bg-primary-deep px-6 md:px-12" style={{ backgroundImage: 'url(/elemente/Backgroundelement_PLACEHOLDER.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    <section id="map-finder" className="relative content-width px-6 md:px-12 py-16 bg-canvas-soft dark:bg-primary-deep" style={{ backgroundImage: 'url(/elemente/Backgroundelement_PLACEHOLDER.webp)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
       {/* ARIA Live Region for accessibility announcements */}
       <div className="sr-only" aria-live="polite" role="status">
         {announcement}
       </div>
 
       {/* Section Heading */}
-      <div className="max-w-7xl mx-auto mb-6">
+      <div className="mb-6">
         <IllustratedHeading
           text="Wo gibt es Atzengold?"
           src="/elemente/HEADLINE5_WoGibtEsAtzengold.png"
-          className="max-w-lg"
+          className="max-w-[540px]"
         />
         <p className="text-sm md:text-base mt-2 max-w-2xl font-bold" style={{ color: '#edcea7' }}>Hier werden alle unsere Bezugsquellen gelistet — von der gemütlichen Kneipe über den Späti bis zur Gastronomie. Täglich frisch geliefert, solange der Vorrat reicht.</p>
       </div>
 
-      <div className="max-w-7xl mx-auto flex flex-col overflow-hidden shadow-2xl border border-brand-dark-900/10 dark:border-canvas/10 bg-canvas dark:bg-brand-dark-900">
+      <div className="flex flex-col overflow-hidden shadow-2xl border border-brand-dark-900/10 dark:border-canvas/10 bg-canvas dark:bg-brand-dark-900">
         
         {/* Mobile View Toggles */}
         <div className="flex lg:hidden bg-canvas-soft dark:bg-brand-dark-900 border-b border-ink/10 dark:border-canvas/10 p-2 justify-center gap-2">
@@ -529,13 +529,13 @@ export default function ThreeDMap({ onOpenDatenschutz }: ThreeDMapProps = {}) {
                       Oder Adresse eingeben:
                     </label>
                     <div className="flex gap-2">
-                      <input 
+                      <input
                         id="address-search"
-                        type="text" 
+                        type="text"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        placeholder="z.B. Nürnberg, Fürth" 
-                        className="flex-1 border border-ink/20 dark:border-canvas/20 px-3 py-2 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary text-ink dark:text-canvas bg-canvas dark:bg-brand-dark-900"
+                        placeholder="z.B. Nürnberg, Fürth"
+                        className="flex-1 border-2 border-primary px-3 py-2 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary text-ink dark:text-canvas bg-white dark:bg-brand-dark-900"
                       />
                       <button 
                         type="submit"

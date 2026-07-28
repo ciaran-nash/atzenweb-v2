@@ -25,7 +25,7 @@ export default function Footer({
 }: FooterProps) {
   return (
     <footer className="bg-canvas border-t border-black/10 py-16 px-4 md:px-8 transition-colors duration-200">
-      <div className="mx-auto max-w-7xl">
+      <div className="content-width">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Left Column: Crests, Logo, Tagline & Contact info */}
           <div className="lg:col-span-4 space-y-6 flex flex-col items-center lg:items-start text-center lg:text-left">
@@ -87,7 +87,7 @@ export default function Footer({
 
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-black/10 flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-black/80">
-          <div className="text-center md:text-left font-mono">
+          <div className="text-center md:text-left text-[11px] font-mono">
             © {CURRENT_YEAR} Atzengold GbR. {lang === 'en' ? 'All rights reserved.' : 'Alle Rechte vorbehalten.'}
           </div>
 

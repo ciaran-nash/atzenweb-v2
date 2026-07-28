@@ -6,7 +6,7 @@ import VolumeX from 'lucide-react/dist/esm/icons/volume-x';
 import Maximize from 'lucide-react/dist/esm/icons/maximize';
 
 const VIDEO_SRCS = {
-  mp4: '/elemente/Atzenmaus.mp4',
+  mp4: 'https://m0vzmrjmfdzfjwgb.public.blob.vercel-storage.com/Atzenmaus.mov',
 } as const;
 
 export default function RootsSection() {
@@ -64,7 +64,7 @@ export default function RootsSection() {
 
   return (
     <section ref={sectionRef} id="roots" aria-label="Unsere Wurzeln" className="py-12 px-6 bg-canvas">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div className="content-width grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Left column: Text, headline, crests */}
         <div className="space-y-8 lg:sticky lg:top-24 lg:self-start">
           <div className="space-y-4 font-mono text-sm leading-relaxed text-black">
@@ -78,7 +78,7 @@ export default function RootsSection() {
           </div>
 
           <div className="flex justify-center">
-            <img src="/elemente/roots-headline.png" alt="Roots" className="h-16 w-auto object-contain" />
+            <img src="/elemente/roots-headline.png" alt="Roots" className="h-16 w-auto object-contain mix-blend-multiply" />
           </div>
 
           <div className="grid grid-cols-4 gap-6 md:gap-8">
@@ -89,7 +89,7 @@ export default function RootsSection() {
               { src: '/elemente/berlin-crest.png', alt: 'Berlin' },
             ].map(crest => (
               <div key={crest.alt} className="flex flex-col items-center gap-3">
-                <img src={crest.src} alt={crest.alt} className="h-32 w-auto object-contain" />
+                <img src={crest.src} alt={crest.alt} className="h-32 w-auto object-contain mix-blend-multiply" />
                 <span className="sr-only">{crest.alt}</span>
               </div>
             ))}
@@ -115,21 +115,21 @@ export default function RootsSection() {
             <div className="absolute top-3 left-3 flex gap-2">
               <button
                 onClick={toggleVideoPlayPause}
-                className="p-2 bg-black/40 hover:bg-black/60 text-white rounded transition-colors"
+                className="p-2 text-white hover:text-white/80 transition-colors"
                 aria-label={isVideoPlaying ? 'Pause video' : 'Play video'}
               >
                 {isVideoPlaying ? <Pause size={18} /> : <Play size={18} />}
               </button>
               <button
                 onClick={toggleVideoMute}
-                className="p-2 bg-black/40 hover:bg-black/60 text-white rounded transition-colors"
+                className="p-2 text-white hover:text-white/80 transition-colors"
                 aria-label={isVideoMuted ? 'Unmute video' : 'Mute video'}
               >
                 {isVideoMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
               </button>
               <button
                 onClick={toggleVideoFullscreen}
-                className="p-2 bg-black/40 hover:bg-black/60 text-white rounded transition-colors"
+                className="p-2 text-white hover:text-white/80 transition-colors"
                 aria-label="Toggle fullscreen"
               >
                 <Maximize size={18} />

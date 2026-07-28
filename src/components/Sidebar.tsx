@@ -10,6 +10,7 @@ interface SidebarProps {
   onLangChange: () => void;
   isOpen: boolean;
   onClose: () => void;
+  onLogoClick?: () => void;
 }
 
 const navLinks = [
@@ -19,10 +20,11 @@ const navLinks = [
   { label: 'SHOP', href: '#shop' },
 ];
 
-function SidebarContent({ lang, onLangChange, onNavClick }: {
+function SidebarContent({ lang, onLangChange, onNavClick, onLogoClick }: {
   lang: Language;
   onLangChange: () => void;
   onNavClick?: () => void;
+  onLogoClick?: () => void;
 }) {
   const sidebarStyle = {
     scrollbarWidth: 'none' as const,
@@ -36,7 +38,11 @@ function SidebarContent({ lang, onLangChange, onNavClick }: {
         href="#"
         onClick={(e) => {
           e.preventDefault();
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+          if (onLogoClick) {
+            onLogoClick();
+          } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
           onNavClick?.();
         }}
         className="block mb-2"
@@ -84,9 +90,9 @@ function SidebarContent({ lang, onLangChange, onNavClick }: {
         }>
           <Bottle3D
             labels={{
-              shoulder: '/labels/Artzengold_Georgenbraeu_Hals_Dez25.webp',
-              body: '/labels/Artzengold_Georgenbraeu_Bauch_Dez25.webp',
-              back: '/labels/Artzengold_Georgenbraeu_Ruecken_Dez25.webp',
+              shoulder: '/labels/atzengold-bottle-neck-label.webp',
+              body: '/labels/atzengold-bottle-front-label.webp',
+              back: '/labels/atzengold-bottle-back-label.webp',
             }}
             autoRotate={true}
             className="w-[min(92vw,500px)] h-[min(64vh,560px)]"
@@ -107,15 +113,15 @@ function SidebarContent({ lang, onLangChange, onNavClick }: {
   );
 }
 
-export default function Sidebar({ lang, onLangChange, isOpen, onClose }: SidebarProps) {
+export default function Sidebar({ lang, onLangChange, isOpen, onClose, onLogoClick }: SidebarProps) {
   return (
     <>
-      {/* Desktop sidebar — fixed, visible at lg+ */}
+      {/* Desktop sidebar — sticky, visible at lg+ */}
       <aside
-        className="fixed left-0 top-0 h-screen w-[210px] bg-canvas border-r border-ink/15 z-40 flex-col px-6 pt-8 pb-0 overflow-y-auto sidebar-scrollbar-hidden hidden lg:flex"
+        className="sticky top-0 h-screen w-[210px] bg-canvas z-40 flex-col px-6 pt-8 pb-0 overflow-y-auto sidebar-scrollbar-hidden hidden lg:flex shrink-0"
         style={{ scrollbarWidth: 'none', '-ms-overflowStyle': 'none' }}
       >
-        <SidebarContent lang={lang} onLangChange={onLangChange} />
+        <SidebarContent lang={lang} onLangChange={onLangChange} onLogoClick={onLogoClick} />
       </aside>
 
       {/* Mobile drawer — slide-in overlay at < lg */}
@@ -139,7 +145,7 @@ export default function Sidebar({ lang, onLangChange, isOpen, onClose }: Sidebar
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 250 }}
-              className="fixed left-0 top-0 h-screen w-[280px] max-w-[85vw] bg-canvas border-r border-ink/15 z-50 flex flex-col overflow-y-auto lg:hidden"
+              className="fixed left-0 top-0 h-screen w-[280px] max-w-[85vw] bg-canvas z-50 flex flex-col overflow-y-auto lg:hidden"
               style={{ scrollbarWidth: 'none', '-ms-overflowStyle': 'none' }}
             >
               {/* Close button */}
@@ -152,7 +158,7 @@ export default function Sidebar({ lang, onLangChange, isOpen, onClose }: Sidebar
               </button>
 
               <div className="px-6 pt-8 pb-0 flex flex-col flex-1">
-                <SidebarContent lang={lang} onLangChange={onLangChange} onNavClick={onClose} />
+                <SidebarContent lang={lang} onLangChange={onLangChange} onNavClick={onClose} onLogoClick={onLogoClick} />
               </div>
             </motion.aside>
           </>

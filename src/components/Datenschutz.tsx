@@ -155,7 +155,7 @@ export default function Datenschutz({ lang, isOpen, onClose }: DatenschutzProps)
         </a>
 
         {/* Main Body Grid */}
-        <div className="flex-1 overflow-hidden grid grid-cols-1 lg:grid-cols-12 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 gap-8">
+        <div className="flex-1 overflow-hidden grid grid-cols-1 lg:grid-cols-12 content-width w-full px-4 sm:px-6 lg:px-8 py-6 gap-8">
           
           {/* LEFT COLUMN: Sticky, Keyboard Accessible Table of Contents */}
           <nav 

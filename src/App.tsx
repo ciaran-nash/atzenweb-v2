@@ -83,6 +83,13 @@ export default function App() {
   const [adminApiKey, setAdminApiKey] = useState<string | null>(null);
   const [adminSection, setAdminSection] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState<'home' | 'shop'>(() => {
+    if (window.location.hash === '#shop') {
+      window.scrollTo(0, 0);
+      return 'shop';
+    }
+    return 'home';
+  });
 
   useEffect(() => {
     document.documentElement.classList.add('light');
@@ -95,6 +102,8 @@ export default function App() {
 
   useEffect(() => {
     const hash = window.location.hash;
+
+    if (hash === '#shop') setCurrentPage('shop');
 
     if (hash === '#admin') {
       const stored = localStorage.getItem('ag_admin_key');
@@ -115,6 +124,8 @@ export default function App() {
 
     const onHashChange = () => {
       const h = window.location.hash;
+      if (h === '#shop') { setCurrentPage('shop'); window.scrollTo(0, 0); return; }
+      setCurrentPage('home');
       if (h === '#admin') {
         const stored = localStorage.getItem('ag_admin_key');
         if (stored) {
@@ -246,8 +257,42 @@ export default function App() {
     );
   }
 
+  if (currentPage === 'shop') {
+    return (
+      <div className="min-h-screen font-sans light">
+        <button
+          onClick={() => setSidebarOpen(true)}
+          aria-label="Menü öffnen"
+          className="fixed top-4 right-4 z-30 p-2.5 bg-canvas border border-ink/15 shadow-md lg:hidden hover:bg-canvas-soft transition-colors"
+        >
+          <Menu className="w-5 h-5 text-ink" />
+        </button>
+        <div className="noise-overlay" />
+        <BrandHub lang={lang} isOpen={showBrandHub} onClose={() => setShowBrandHub(false)} onTriggerNotification={handleTriggerNotification} />
+        <Datenschutz lang={lang} isOpen={showDatenschutz} onClose={() => setShowDatenschutz(false)} />
+        <Impressum lang={lang} isOpen={showImpressum} onClose={() => setShowImpressum(false)} />
+        <Widerrufsrecht lang={lang} isOpen={showWiderrufsrecht} onClose={() => setShowWiderrufsrecht(false)} />
+        <AGB lang={lang} isOpen={showAGB} onClose={() => setShowAGB(false)} />
+        <CookieBanner lang={lang} isOpen={showCookieBanner} onClose={() => setShowCookieBanner(false)} onConsentSaved={() => {}} onTriggerNotification={handleTriggerNotification} onShowPrivacy={() => setShowDatenschutz(true)} onShowImpressum={() => setShowImpressum(true)} />
+        {!isVerified && <AgeGate lang={lang} onVerified={handleVerified} />}
+        <div className="flex justify-center">
+          <Sidebar lang={lang} onLangChange={handleLanguageSwitch} isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} onLogoClick={() => { setCurrentPage('home'); window.location.hash = ''; }} />
+          <div className="min-w-0 w-full">
+            <MerchShop lang={lang} onAddCartFeedback={handleTriggerNotification} />
+            {checkoutOrderId && <CheckoutSuccess lang={lang} orderId={checkoutOrderId} onClose={handleCheckoutClose} />}
+            {showCheckoutCancel && <CheckoutCancelOverlay lang={lang} onClose={handleCheckoutClose} />}
+            <AnimatePresence>
+              {activeNotification && <NotificationToast message={activeNotification} lang={lang} onClose={() => setActiveNotification(null)} />}
+            </AnimatePresence>
+            <Footer lang={lang} onShowImpressum={() => setShowImpressum(true)} onShowDatenschutz={() => setShowDatenschutz(true)} onShowAGB={() => setShowAGB(true)} onShowWiderrufsrecht={() => setShowWiderrufsrecht(true)} onShowCookies={() => setShowCookieBanner(true)} onLangToggle={handleLanguageSwitch} />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen font-sans scroll-smooth lg:pl-[210px] pl-0 light">
+    <div className="min-h-screen font-sans scroll-smooth light">
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 lg:focus:left-[220px] focus:z-[100] focus:bg-accent focus:text-ink focus:px-4 focus:py-2 focus:font-bold focus:text-sm focus:shadow-lg focus:outline-none"
@@ -299,65 +344,73 @@ export default function App() {
         <AgeGate lang={lang} onVerified={handleVerified} />
       )}
 
-      <Sidebar lang={lang} onLangChange={handleLanguageSwitch} isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <div className="flex justify-center">
+        <Sidebar lang={lang} onLangChange={handleLanguageSwitch} isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-      <main id="main-content">
-        <h1 className="sr-only">Atzengold – Fränkisches Kellerbier</h1>
-        <Carousel />
-      </main>
+        <div className="min-w-0">
+          <main id="main-content">
+            <h1 className="sr-only">Atzengold – Fränkisches Kellerbier</h1>
+            <Carousel />
+          </main>
 
-      <RootsSection />
+          <RootsSection />
 
-      <div className="px-6 bg-canvas">
-        <div className="max-w-7xl mx-auto">
-          <img src="/elemente/Strich_01.png" alt="" aria-hidden="true" className="w-full" />
+          <div className="px-6 bg-canvas">
+            <div className="content-width">
+              <img src="/elemente/Strich_01.png" alt="" aria-hidden="true" className="w-full" />
+            </div>
+          </div>
+
+          <div id="story"><StoryAndBrew lang={lang} /></div>
+
+          <div id="testimonials"><Testimonials lang={lang} /></div>
+
+          <div id="shop"><MerchShop lang={lang} onAddCartFeedback={handleTriggerNotification} /></div>
+
+          <div className="px-6 bg-canvas">
+            <div className="content-width">
+              <img src="/elemente/Strich_02.png" alt="" aria-hidden="true" className="w-full" />
+            </div>
+          </div>
+
+          <InstagramFeed lang={lang} />
+
+          <Suspense fallback={<div className="py-32 text-center text-ink/40">Loading map…</div>}>
+            <ThreeDMap onOpenDatenschutz={() => setShowDatenschutz(true)} />
+          </Suspense>
+
+          {checkoutOrderId && (
+            <CheckoutSuccess lang={lang} orderId={checkoutOrderId} onClose={handleCheckoutClose} />
+          )}
+
+          {showCheckoutCancel && (
+            <CheckoutCancelOverlay lang={lang} onClose={handleCheckoutClose} />
+          )}
+
+          <Widerrufsrecht lang={lang} isOpen={showWiderrufsrecht} onClose={() => setShowWiderrufsrecht(false)} />
+
+          <AGB lang={lang} isOpen={showAGB} onClose={() => setShowAGB(false)} />
+
+          <AnimatePresence>
+            {activeNotification && (
+              <NotificationToast message={activeNotification} lang={lang} onClose={() => setActiveNotification(null)} />
+            )}
+          </AnimatePresence>
+
+          <Footer
+            lang={lang}
+            onShowImpressum={() => setShowImpressum(true)}
+            onShowDatenschutz={() => setShowDatenschutz(true)}
+            onShowAGB={() => setShowAGB(true)}
+            onShowWiderrufsrecht={() => setShowWiderrufsrecht(true)}
+            onShowCookies={() => setShowCookieBanner(true)}
+            onLangToggle={handleLanguageSwitch}
+          />
+
+          <div className="sr-only" aria-live="polite" role="status">
+            {activeNotification || ''}
+          </div>
         </div>
-      </div>
-
-      <div id="story"><StoryAndBrew lang={lang} /></div>
-
-      <div id="testimonials"><Testimonials lang={lang} /></div>
-
-      <div id="shop"><MerchShop lang={lang} onAddCartFeedback={handleTriggerNotification} /></div>
-
-      <img src="/elemente/Strich_02.png" alt="" aria-hidden="true" className="w-full" />
-
-      <InstagramFeed lang={lang} />
-
-      <Suspense fallback={<div className="py-32 text-center text-ink/40">Loading map…</div>}>
-        <ThreeDMap onOpenDatenschutz={() => setShowDatenschutz(true)} />
-      </Suspense>
-
-      {checkoutOrderId && (
-        <CheckoutSuccess lang={lang} orderId={checkoutOrderId} onClose={handleCheckoutClose} />
-      )}
-
-      {showCheckoutCancel && (
-        <CheckoutCancelOverlay lang={lang} onClose={handleCheckoutClose} />
-      )}
-
-      <Widerrufsrecht lang={lang} isOpen={showWiderrufsrecht} onClose={() => setShowWiderrufsrecht(false)} />
-
-      <AGB lang={lang} isOpen={showAGB} onClose={() => setShowAGB(false)} />
-
-      <AnimatePresence>
-        {activeNotification && (
-          <NotificationToast message={activeNotification} lang={lang} onClose={() => setActiveNotification(null)} />
-        )}
-      </AnimatePresence>
-
-      <Footer
-        lang={lang}
-        onShowImpressum={() => setShowImpressum(true)}
-        onShowDatenschutz={() => setShowDatenschutz(true)}
-        onShowAGB={() => setShowAGB(true)}
-        onShowWiderrufsrecht={() => setShowWiderrufsrecht(true)}
-        onShowCookies={() => setShowCookieBanner(true)}
-        onLangToggle={handleLanguageSwitch}
-      />
-
-      <div className="sr-only" aria-live="polite" role="status">
-        {activeNotification || ''}
       </div>
     </div>
   );

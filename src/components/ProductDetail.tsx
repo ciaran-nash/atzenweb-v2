@@ -12,9 +12,11 @@ interface ProductDetailProps {
   lang: Language;
   onAddToCart: (item: MerchItem, size?: string, options?: Record<string, string>) => void;
   onClose: () => void;
+  allItems?: MerchItem[];
+  onViewItem?: (item: MerchItem) => void;
 }
 
-export default function ProductDetail({ item, lang, onAddToCart, onClose }: ProductDetailProps) {
+export default function ProductDetail({ item, lang, onAddToCart, onClose, allItems, onViewItem }: ProductDetailProps) {
   const t = translations[lang];
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedSize, setSelectedSize] = useState(item.sizes?.[0] || '');
@@ -49,7 +51,7 @@ export default function ProductDetail({ item, lang, onAddToCart, onClose }: Prod
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-canvas dark:bg-primary-deep overflow-y-auto">
+    <div className="bg-canvas dark:bg-primary-deep">
       <div className="max-w-5xl mx-auto px-4 py-6">
         <button
           onClick={onClose}
@@ -61,7 +63,7 @@ export default function ProductDetail({ item, lang, onAddToCart, onClose }: Prod
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="space-y-4">
-            <div className="relative aspect-square rounded-2xl overflow-hidden bg-ink/5 dark:bg-canvas/5 border border-ink/10 dark:border-canvas/10 flex items-center justify-center">
+            <div className="relative aspect-square overflow-hidden bg-ink/5 dark:bg-canvas/5 border border-ink/10 dark:border-canvas/10 flex items-center justify-center">
               {(images[selectedImage]?.startsWith('http') || images[selectedImage]?.startsWith('/')) ? (
                 <button
                   onClick={() => setLightboxIndex(selectedImage)}
@@ -83,14 +85,14 @@ export default function ProductDetail({ item, lang, onAddToCart, onClose }: Prod
                   <button
                     onClick={() => setSelectedImage(i => (i - 1 + images.length) % images.length)}
                     aria-label={lang === 'en' ? 'Previous image' : 'Vorheriges Bild'}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-canvas/80 dark:bg-ink/80 text-ink dark:text-canvas hover:bg-canvas dark:hover:bg-ink transition-colors shadow-md cursor-pointer border-none"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-canvas/80 dark:bg-ink/80 text-ink dark:text-canvas hover:bg-canvas dark:hover:bg-ink transition-colors shadow-md cursor-pointer border-none"
                   >
                     <ChevronLeft className="h-5 w-5" />
                   </button>
                   <button
                     onClick={() => setSelectedImage(i => (i + 1) % images.length)}
                     aria-label={lang === 'en' ? 'Next image' : 'Nächstes Bild'}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-canvas/80 dark:bg-ink/80 text-ink dark:text-canvas hover:bg-canvas dark:hover:bg-ink transition-colors shadow-md cursor-pointer border-none"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-canvas/80 dark:bg-ink/80 text-ink dark:text-canvas hover:bg-canvas dark:hover:bg-ink transition-colors shadow-md cursor-pointer border-none"
                   >
                     <ChevronRight className="h-5 w-5" />
                   </button>
@@ -106,7 +108,7 @@ export default function ProductDetail({ item, lang, onAddToCart, onClose }: Prod
                     onClick={() => setSelectedImage(idx)}
                     aria-label={lang === 'en' ? `View image ${idx + 1}` : `Bild ${idx + 1} anzeigen`}
                     aria-pressed={idx === selectedImage}
-                    className={`shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 transition-colors cursor-pointer ${
+                    className={`shrink-0 w-16 h-16 overflow-hidden border-2 transition-colors cursor-pointer ${
                       idx === selectedImage
                         ? 'border-accent'
                         : 'border-transparent hover:border-ink/20 dark:hover:border-canvas/20'
@@ -128,7 +130,7 @@ export default function ProductDetail({ item, lang, onAddToCart, onClose }: Prod
           <div className="flex flex-col gap-6">
             <div>
               <span className="text-[10px] uppercase font-mono font-bold tracking-wider text-ink/90 dark:text-canvas/90">{item.category}</span>
-              <h1 className="text-3xl md:text-4xl font-handwritten font-bold text-ink dark:text-canvas normal-case mt-1">
+              <h1 className="text-3xl md:text-4xl font-mono font-bold text-ink dark:text-canvas normal-case mt-1">
                 {t[`shopItem${item.id.toUpperCase()}Name` as keyof typeof t] || item.name}
               </h1>
             </div>
@@ -152,7 +154,7 @@ export default function ProductDetail({ item, lang, onAddToCart, onClose }: Prod
                     <button
                       key={s}
                       onClick={() => setSelectedSize(s)}
-                      className={`cursor-pointer rounded-lg text-sm font-display font-black w-10 h-10 transition-all flex items-center justify-center ${
+                      className={`cursor-pointer text-sm font-display font-black w-10 h-10 transition-all flex items-center justify-center ${
                         selectedSize === s
                           ? 'bg-accent text-ink shadow-sm ring-2 ring-accent ring-offset-2 ring-offset-canvas dark:ring-offset-primary-deep border-none'
                           : 'bg-canvas dark:bg-brand-dark-900 text-ink dark:text-canvas hover:bg-ink/5 dark:hover:bg-canvas/5 border border-ink/20 dark:border-canvas/20'
@@ -173,7 +175,7 @@ export default function ProductDetail({ item, lang, onAddToCart, onClose }: Prod
                     <button
                       key={v}
                       onClick={() => setSelectedOptions(prev => ({ ...prev, [opt.label]: v }))}
-                      className={`cursor-pointer rounded-lg text-sm font-display font-black px-4 py-2 transition-all ${
+                      className={`cursor-pointer text-sm font-display font-black px-4 py-2 transition-all ${
                         selectedOptions[opt.label] === v
                           ? 'bg-accent text-ink shadow-sm ring-2 ring-accent ring-offset-2 ring-offset-canvas dark:ring-offset-primary-deep border-none'
                           : 'bg-canvas dark:bg-brand-dark-900 text-ink dark:text-canvas hover:bg-ink/5 dark:hover:bg-canvas/5 border border-ink/20 dark:border-canvas/20'
@@ -188,7 +190,7 @@ export default function ProductDetail({ item, lang, onAddToCart, onClose }: Prod
 
             <button
               onClick={handleAddToCart}
-              className={`w-full rounded-xl font-display font-bold uppercase py-4 px-6 transition-all flex items-center justify-center gap-2 text-lg border-none cursor-pointer ${
+              className={`w-full font-display font-bold uppercase py-4 px-6 transition-all flex items-center justify-center gap-2 text-lg border-none cursor-pointer ${
                 added
                   ? 'bg-primary text-canvas'
                   : 'bg-ink dark:bg-accent text-canvas dark:text-on-accent hover:bg-ink/90 dark:hover:bg-accent-hover shadow-md hover:shadow-lg'
@@ -200,6 +202,40 @@ export default function ProductDetail({ item, lang, onAddToCart, onClose }: Prod
           </div>
         </div>
       </div>
+
+      {allItems && onViewItem && allItems.filter(i => i.id !== item.id).length > 0 && (
+        <div className="max-w-5xl mx-auto px-4 pb-12">
+          <div className="border-t border-ink/10 pt-10">
+            <span className="text-[10px] uppercase font-mono font-bold tracking-wider text-ink/50">{lang === 'en' ? 'Related Products' : 'Weitere Produkte'}</span>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+              {allItems.filter(i => i.id !== item.id).map(related => {
+                const thumb = related.images?.[0] || related.image;
+                const price = related.promoPrice || related.price;
+                return (
+                  <button
+                    key={related.id}
+                    onClick={() => onViewItem(related)}
+                    className="cursor-pointer text-left bg-canvas border border-ink/10 hover:border-ink/30 transition-all hover:-translate-y-1 hover:shadow-md p-3 flex flex-col gap-2 border-none"
+                  >
+                    <div className="aspect-square bg-ink/5 overflow-hidden flex items-center justify-center">
+                      {(thumb?.startsWith('http') || thumb?.startsWith('/')) ? (
+                        <img src={thumb} alt={related.name} className="w-full h-full object-cover" />
+                      ) : (
+                        <span className="text-3xl">{renderMerchIcon(thumb || '', 'h-10 w-10')}</span>
+                      )}
+                    </div>
+                    <div>
+                      <span className="text-[9px] uppercase font-mono font-bold tracking-wider text-ink/50">{related.category}</span>
+                      <p className="text-sm font-mono font-bold text-ink leading-snug">{related.name}</p>
+                      <p className="text-sm font-black text-ink font-display mt-1">€{price.toFixed(2)}</p>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
 
       {lightboxIndex !== null && (images[lightboxIndex]?.startsWith('http') || images[lightboxIndex]?.startsWith('/')) && (
         <div

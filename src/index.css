@@ -33,9 +33,9 @@
   --color-fresh: oklch(0.42 0.13 165.0);
 
   /* Gold Accent (decorative — NOT for body text) */
-  --color-accent: oklch(0.65 0.15 75.0);
-  --color-accent-hover: oklch(0.58 0.14 75.0);
-  --color-accent-soft: oklch(0.65 0.15 75.0 / 0.15);
+  --color-accent: oklch(0.68 0.12 82.0);
+  --color-accent-hover: oklch(0.60 0.11 82.0);
+  --color-accent-soft: oklch(0.68 0.12 82.0 / 0.15);
   --color-accent-text: oklch(0.42 0.13 165.0);
   --color-on-accent: oklch(0.42 0.13 165.0);
 
@@ -420,7 +420,7 @@ html.dark .halftone-overlay::after {
   display: none;  /* Safari and Chrome */
 }
 
-/* ── Timeline Carousel — Horizontal Scrolljacking ── */
+/* ── Timeline Carousel — Horizontal Scroll ── */
 .timeline-carousel-outer {
   overflow-x: hidden;
   width: 100%;
@@ -450,4 +450,26 @@ html.dark .halftone-overlay::after {
   align-items: center;
 }
 
-/* ── Timeline Carousel — Horizontal Scrolljacking ── */
+/* ── Timeline Carousel — Left/Right Nav Buttons ── */
+.timeline-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  padding: 0.5rem;
+  color: rgba(255,255,255,0.8);
+  transition: color 0.2s;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.timeline-nav-btn:hover {
+  color: white;
+}
+
+/* ── Retro Content Width (1100px fixed) ── */
+.content-width {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}

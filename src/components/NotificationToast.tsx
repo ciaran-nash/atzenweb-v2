@@ -15,7 +15,7 @@ export default function NotificationToast({ message, onClose, lang }: Notificati
       className="fixed bottom-6 right-6 z-50 max-w-md w-full sm:w-[380px] rounded-2xl border border-ink/10 dark:border-canvas/10 bg-canvas dark:bg-brand-dark-900 p-4 flex gap-3.5 items-start justify-between scroll-smooth shadow-xl animate-slideUp"
     >
 
-      <div className="relative h-10 w-10 shrink-0 rounded-full border border-ink/10 bg-accent flex items-center justify-center text-ink shadow-md">
+      <div className="relative h-10 w-10 shrink-0 rounded-full border border-ink/10 flex items-center justify-center text-ink shadow-md">
         <Bell className="h-5 w-5 animate-bounce" strokeWidth={2} />
       </div>
 
